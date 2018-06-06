@@ -21,7 +21,6 @@ class User extends Authenticatable
         'last_name',
         'num_id',
         'email',
-        'module_id',
         'password'
     ];
 
@@ -30,7 +29,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    // protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * Los atributos que deberían estar ocultos para las matrices.
@@ -44,15 +43,6 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at',
     ];
-
-    /**
-     * Obtener el modulo que posee el usuario.
-     */
-    public function module()
-    {
-        // pertenece a
-        return $this->belongsTo(Models\Module::class);
-    }
 
     /**
      * Obtener los roles que posee el usuario.

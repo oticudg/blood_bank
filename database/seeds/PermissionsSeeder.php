@@ -11,15 +11,6 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        /**
-         * Permisos de Modulos
-         */
-        App\Models\Permisologia\Permission::create([
-        	'name' => 'Cambiar de Modulo',
-        	'module' => 'module',
-        	'action' => 'changeModule',
-        	'description' => 'Permiso para cambiar de modulo'
-        ]);
 
         /**
          * Permisos de usuarios

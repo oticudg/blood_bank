@@ -21,7 +21,6 @@ class UserRootSeeder extends Seeder
             'num_id'    => '99999999',
             'email'     => 'root@sahum.gob.ve',
             'password'  => bcrypt('secret'),
-            'module_id' => 1
         ]);
 
         App\Models\Permisologia\Role::create([

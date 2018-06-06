@@ -32,8 +32,8 @@ return [
     | Menu Logos
     |--------------------------------------------------------------------------
     */
-    'logo_lg'   => '<b>Admin</b>LTE',
-    'logo_mini' => '<b>A</b>LTE',
+    'logo_lg'   => '<i class="fa fa-bank"></i> <b>Blood</b>Bank',
+    'logo_mini' => '<i class="fa fa-bank"></i><b>B</b>B',
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,8 @@ return [
     |
     */
 
-    'credits' => '<a href="#">Renny Suárez</a>',
+    'credits' => '<a href="http://www.sahum.gob.ve">Aplicación Desarrollada por la Unidad de Desarrollo y Programación Adscripta a OTIC</a>',
+    // 'credits' => '<a href="#">Renny Suárez</a>',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,5 +74,5 @@ return [
     |
     */
 
-    'theme' => 'skin-blue',
+    'theme' => 'skin-red-light',
 ];

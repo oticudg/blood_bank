@@ -1,10 +1,9 @@
-<template>
     <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menú de Navegación</li>
         <li>
-            <router-link :to="{ name: 'dashboard' }">
+            <a href="dashboard">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            </router-link>
+            </a>
         </li>
         <li class="treeview" v-if="can(['user.index','rol.index','permission.index'])">
             <a href="#">
@@ -16,19 +15,19 @@
             </a>
             <ul class="treeview-menu">
                 <li v-if="can('user.index')">
-                    <router-link :to="{ name: 'user.index' }">
+                    <a href="user">
                         <i class="fa fa-users"></i> Usuarios
-                    </router-link>
+                    </a>
                 </li>
                 <li v-if="can('rol.index')">
-                    <router-link :to="{ name: 'rol.index' }">
+                    <a href="rol">
                         <i class="glyphicon glyphicon-compressed"></i> Roles
-                    </router-link>
+                    </a>
                 </li>
                 <li v-if="can('permission.index')">
-                    <router-link :to="{ name: 'permission.index' }">
+                    <a href="permission">
                         <i class="glyphicon glyphicon-th"></i> Permisos
-                    </router-link>
+                    </a>
                 </li>
             </ul>
         </li>
@@ -42,19 +41,19 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <router-link :to="{ name: 'donation.index' }">
+                    <a href="donation">
                         <i class="fa fa-users"></i> Donantes
-                    </router-link>
+                    </a>
                 </li>
                 <li>
-                    <router-link :to="{ name: 'donations.index' }">
+                    <a href="donations">
                         <i class="glyphicon glyphicon-compressed"></i> Donaciones
-                    </router-link>
+                    </a>
                 </li>
                 <li>
-                    <router-link :to="{ name: 'products.index' }">
+                    <a href="products">
                         <i class="glyphicon glyphicon-compressed"></i> Productos
-                    </router-link>
+                    </a>
                 </li>
             </ul>
         </li>
@@ -68,21 +67,21 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <router-link :to="{ name: 'recepcion.index' }">
+                    <a href="recepcion">
                         <i class="glyphicon glyphicon-user"></i> Vencimiento
-                    </router-link>
+                    </a>
                 </li>
                 <li>
-                    <router-link :to="{ name: 'recepcion.index' }">
+                    <a href="recepcion">
                         <i class="glyphicon glyphicon-user"></i> Proximos a Descartes
-                    </router-link>
+                    </a>
                 </li>
             </ul>
         </li>
         <li>
-            <router-link :to="{ name: 'recepcion.index' }">
+            <a href="recepcion">
                 <i class="fa fa-dashboard"></i> <span> Recepción</span>
-            </router-link>
+            </a>
         </li>
         <li class="treeview">
             <a href="#">
@@ -94,14 +93,14 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <router-link :to="{ name: 'recepcion.index' }">
+                    <a href="recepcion">
                         <i class="glyphicon glyphicon-user"></i> 1
-                    </router-link>
+                    </a>
                 </li>
                 <li>
-                    <router-link :to="{ name: 'recepcion.index' }">
+                    <a href="recepcion">
                         <i class="glyphicon glyphicon-user"></i> 2
-                    </router-link>
+                    </a>
                 </li>
             </ul>
         </li>
@@ -111,10 +110,3 @@
             </a>
         </li>
     </ul>
-</template>
-
-<script>
-    export default {}
-</script>
-
-

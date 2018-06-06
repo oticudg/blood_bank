@@ -21,14 +21,9 @@ class CreateUsersTable extends Migration
             $table->integer('num_id')->unsigned()->unique();
             $table->string('email', 50)->unique();
             $table->string('password')->nullable();
-            $table->integer('module_id')->unsigned()->index()->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('module_id')
-            ->references('id')->on('modules')
-            ->onDelete('cascade');
         });
         Schema::enableForeignKeyConstraints();
     }

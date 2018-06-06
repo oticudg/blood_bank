@@ -26,7 +26,6 @@ class UserStoreRequest extends FormRequest
         return [
             'email'     => 'required|email|min:8|max:35|unique:users|DomainValid',
             'last_name' => 'required|alfa_space|min:3|max:15',
-            'module_id' => 'required|numeric',
             'name'      => 'required|alfa_space|min:3|max:15',
             'num_id'    => 'required|numeric|digits_between:6,8|exr_ced|unique:users',
             'password'  => 'required|string|min:6|max:20|confirmed',
@@ -54,7 +53,6 @@ class UserStoreRequest extends FormRequest
         return [
             'email'     => 'correo',
             'last_name' => 'apellido',
-            'module_id' => 'módulo',
             'name'      => 'nombre',
             'num_id'    => 'cédula',
             'password'  => 'contraseña',

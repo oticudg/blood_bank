@@ -35,19 +35,6 @@
 
                 <div class="form-group">
                   <label for="roles" class="control-label">
-                    <span class="glyphicon glyphicon-inbox"></span> Módulo:
-                  </label>
-                  <select id="module_id" required="true" class="form-control" v-model="formData.user.module_id">
-                    <option value="">Seleccione el Módulo</option>
-                    <option v-for="(module, key, index) in modules" :value="key">{{ module }}</option>
-                  </select>
-                  <small id="module_idHelp" class="form-text text-muted">
-                    <span v-text="msg.module_id"></span>
-                  </small>
-                </div>
-
-                <div class="form-group">
-                  <label for="roles" class="control-label">
                     <span class="glyphicon glyphicon-compressed"></span> Roles:
                   </label>
                   <v-multiselect v-model="formData.user.roles" :options="roles" :multiple="true" :hide-selected="true" :close-on-select="false"></v-multiselect>

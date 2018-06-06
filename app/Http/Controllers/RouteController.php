@@ -60,8 +60,8 @@ class RouteController extends Controller
      */
     public function canPermission(Request $request)
     {
-        $whiteList = ['error', 'profile'];
-        if (array_search($request->p, $whiteList)) return response()->json(true);
+        $whiteList = ['error', 'profile', 'test'];
+        if (in_array($request->p, $whiteList)) return response()->json(true);
 
         $separated = explode('.', $request->p);
         $module = $separated[0];

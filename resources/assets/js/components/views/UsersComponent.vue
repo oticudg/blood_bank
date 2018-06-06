@@ -68,7 +68,6 @@
                         password: '',
                         password_confirmation: '',
                         roles: '',
-                        module_id: ''
                     }
                 },
                 tabla: {
@@ -77,7 +76,6 @@
                     { title: 'Cédula', field: 'num_id', sortable: true },
                     { title: 'Correo', field: 'email', sortable: true },
                     { title: 'Rol', field: 'rol' },
-                    { title: 'Módulo', field: 'modul', sort: 'module_id', sortable: true }
                     ]
                 }
             };
@@ -97,7 +95,6 @@
                         password: '',
                         password_confirmation: '',
                         roles: [],
-                        module_id: ''
                     };
                     this.formData.ready = true;
                 } else if (cond == 'edit') {

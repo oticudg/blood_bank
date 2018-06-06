@@ -31,7 +31,6 @@ $factory->define(App\User::class, function (Faker $faker) {
 		'email' => $user.$emails[rand(0, 5)],
 		'password' => bcrypt('secret'),
 		'remember_token' => str_random(10),
-		'module_id' => rand(1, 3)
 	];
 });
 

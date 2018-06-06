@@ -49,12 +49,6 @@
                                     <small id="num_idHelp" class="form-text"></small>
                                 </div>
                             </div>
-                            <div class="form-group" v-if="user.module">
-                                <label for="module" class="col-sm-2 control-label">Módulo:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="module" placeholder="Módulo" v-model="user.module.module" readonly>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label for="imagen" class="col-sm-2 control-label">Imagen:</label>
                                 <div class="col-sm-10">
@@ -146,7 +140,6 @@
                 data.append('last_name', this.user.last_name);
                 data.append('email', this.user.email);
                 data.append('num_id', this.user.num_id);
-
 
                 axios.post('update-user', data)
                 .then(response => {

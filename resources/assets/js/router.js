@@ -46,6 +46,26 @@ const router = new VueRouter({
 		}
 		]
 	},
+	{
+		path: '/donantes',
+		name: 'donation.index',
+		component: { template:'<b>Donantes</b>' },
+	},
+	{
+		path: '/donaciones',
+		name: 'donations.index',
+		component: { template:'<b>Donaciones</b>' },
+	},
+	{
+		path: '/productos',
+		name: 'products.index',
+		component: { template:'<b>Productos</b>' },
+	},
+	{
+		path: '/recepción',
+		name: 'recepcion.index',
+		component: { template:'<b>Recepción</b>' },
+	},
 	{ 
 		path: '*', 
 		name: 'error',

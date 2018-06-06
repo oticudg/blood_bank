@@ -39,7 +39,6 @@ class UsersController extends Controller
             }
             $u->rol = $rol;
             $u->fullName = $u->fullName();
-            $u->modul = optional($u->module)->module;
         });
 
         return $this->dataWithPagination($users);
@@ -137,30 +136,8 @@ class UsersController extends Controller
      */
     public function dataForRegister()
     {
-        $modules = Module::all()->pluck('module', 'id');
-        $roles = Role::all()->pluck('name', 'id');
         $roles = Role::all()->pluck('name');
-        return response()->json(compact(['modules', 'roles']));
-    }
-
-    /**
-     * Retorna los datos que se usaran para cambiar el modulo.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function changeModule(Request $request)
-    {
-        if ($request->method() === 'GET') {
-            $module = \Auth::user()->module->toArray();
-            if (\Auth::user()->canActMod('module', 'changeModule')) {
-                $modules = Module::all()->pluck('module', 'id')->toArray();
-                $modules = array_diff($modules, $module);
-            }
-            return response()->json(compact('module', 'modules'));
-        } elseif ($request->method() === 'POST') {
-            $result = \Auth::user()->update(['module_id' => $request->key]);
-            return response()->json($result);
-        }
+        return response()->json(compact(['roles']));
     }
 
 }

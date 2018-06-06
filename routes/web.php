@@ -53,8 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
         // Permissions Routes...
         Route::resource('permissions', 'PermissionsController')->only(['index', 'show', 'update']);
 
-        Route::match(['post', 'get'], 'change-module-user', 'UsersController@changeModule');
-
     });
 
     Route::group(['prefix' => '/', 'namespace' => 'Dashboard', 'as' => 'Dashboard::'], function () {
@@ -66,5 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('admin/app', 'RouteController@canPermission');
 
 });
+
+Route::view('test', 'layouts.test'); // ruta para las vistas
 
 Route::get('{any?}', 'RouteController@index')->where('any', '.*');
