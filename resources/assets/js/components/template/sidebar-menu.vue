@@ -32,36 +32,31 @@
                 </li>
             </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview" v-if="can(['donation.index'])">
             <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Donaciones</span>
+                <span>Actividades</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li>
-                    <router-link :to="{ name: 'donation.index' }">
-                        <i class="fa fa-users"></i> Donantes
+                <li v-if="can('donation.index')">
+                    <router-link :to="{ name: 'donor.index' }">
+                        <i class="fa fa-users"></i> Donaciones
                     </router-link>
                 </li>
-                <li>
+                <!-- <li>
                     <router-link :to="{ name: 'donations.index' }">
-                        <i class="glyphicon glyphicon-compressed"></i> Donaciones
+                        <i class="glyphicon glyphicon-compressed"></i> Otras actividades
                     </router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'products.index' }">
-                        <i class="glyphicon glyphicon-compressed"></i> Productos
-                    </router-link>
-                </li>
+                </li> -->
             </ul>
         </li>
-        <li class="treeview">
+        <!-- <li class="treeview">
             <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Notificaciones</span>
+                <span>Productos</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -69,25 +64,30 @@
             <ul class="treeview-menu">
                 <li>
                     <router-link :to="{ name: 'recepcion.index' }">
-                        <i class="glyphicon glyphicon-user"></i> Vencimiento
+                        <i class="glyphicon glyphicon-user"></i> Conteo general
                     </router-link>
                 </li>
                 <li>
                     <router-link :to="{ name: 'recepcion.index' }">
-                        <i class="glyphicon glyphicon-user"></i> Proximos a Descartes
+                        <i class="glyphicon glyphicon-user"></i> Lista especifica de productos
+                    </router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'recepcion.index' }">
+                        <i class="glyphicon glyphicon-user"></i> Ordenes Médicas
                     </router-link>
                 </li>
             </ul>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
             <router-link :to="{ name: 'recepcion.index' }">
-                <i class="fa fa-dashboard"></i> <span> Recepción</span>
+                <i class="fa fa-dashboard"></i> <span> Inventario</span>
             </router-link>
-        </li>
-        <li class="treeview">
+        </li> -->
+        <!-- <li class="treeview">
             <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Estadística</span>
+                <span>Planificación</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -95,21 +95,31 @@
             <ul class="treeview-menu">
                 <li>
                     <router-link :to="{ name: 'recepcion.index' }">
-                        <i class="glyphicon glyphicon-user"></i> 1
+                        <i class="glyphicon glyphicon-user"></i> Planificación de compra
                     </router-link>
                 </li>
                 <li>
                     <router-link :to="{ name: 'recepcion.index' }">
-                        <i class="glyphicon glyphicon-user"></i> 2
+                        <i class="glyphicon glyphicon-user"></i> Planificación de turno
                     </router-link>
                 </li>
             </ul>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
+            <router-link :to="{ name: 'recepcion.index' }">
+                <i class="fa fa-bar-chart"></i> <span>Estadísticas</span>
+            </router-link>
+        </li> -->
+        <!-- <li>
+            <router-link :to="{ name: 'recepcion.index' }">
+                <i class="fa fa-dashboard"></i> <span>Manual de ayuda</span>
+            </router-link>
+        </li> -->
+        <!-- <li>
             <a href="/test">
-                <i class="fa fa-dashboard"></i> <span> Test</span>
+                <i class="fa fa-bicycle"></i> <span>Test</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </template>
 

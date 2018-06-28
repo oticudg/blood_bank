@@ -31,11 +31,10 @@ Vue.mixin({
 			if (permissions === 'all-access') return true;
 			if (permissions === 'no-access') return false;
 			if (Array.isArray(accion)) {
-				let isset = false;
 				for(let i in accion) {
-					isset = permissions.includes(accion[i]);
+					if (permissions.includes(accion[i])) return true;
 				}
-				return isset;
+				return false;
 			}
 			return this.$root.permissions.includes(accion);
 		},

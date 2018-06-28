@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Validator;
 use Auth;
 use DB;
+use Carbon;
 
 class ValidatorServiceProvider extends ServiceProvider
 {
@@ -93,6 +94,17 @@ class ValidatorServiceProvider extends ServiceProvider
             }
             return true;
         }, 'El elemento :attribute ya está en uso.');
+
+        /**
+         * Verifiva que el valor a ingrasar no sea menor a una fecha.
+         */
+        Validator::extend('year_min', function($attribute, $value, $parameters)
+        {
+            $year = Carbon::parse(date($value))->year;
+            if ($year > $parameters[0]) return true;
+            return false;
+        }, 'El elemento :attribute esta por debajo del permitido.');
+
     }
 
     /**

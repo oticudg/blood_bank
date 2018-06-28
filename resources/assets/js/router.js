@@ -5,6 +5,7 @@ import Profile from './components/views/profileComponent.vue';
 import Users from './components/views/UsersComponent.vue';
 import Roles from './components/views/RolesComponent.vue';
 import Permissions from './components/views/PermissionsComponent.vue';
+import Donor from './components/views/DonorsComponent.vue';
 import NotFound from './components/views/NotFoundComponent.vue';
 
 const router = new VueRouter({
@@ -48,24 +49,24 @@ const router = new VueRouter({
 	},
 	{
 		path: '/donantes',
-		name: 'donation.index',
-		component: { template:'<b>Donantes</b>' },
+		name: 'donor.index',
+		component: Donor,
 	},
-	{
-		path: '/donaciones',
-		name: 'donations.index',
-		component: { template:'<b>Donaciones</b>' },
-	},
-	{
-		path: '/productos',
-		name: 'products.index',
-		component: { template:'<b>Productos</b>' },
-	},
-	{
-		path: '/recepción',
-		name: 'recepcion.index',
-		component: { template:'<b>Recepción</b>' },
-	},
+	// {
+	// 	path: '/donantes',
+	// 	name: 'donation.index',
+	// 	component: { template:'<b>Donantes</b>' },
+	// },
+	// {
+	// 	path: '/productos',
+	// 	name: 'products.index',
+	// 	component: { template:'<b>Productos</b>' },
+	// },
+	// {
+	// 	path: '/recepción',
+	// 	name: 'recepcion.index',
+	// 	component: { template:'<b>Recepción</b>' },
+	// },
 	{ 
 		path: '*', 
 		name: 'error',

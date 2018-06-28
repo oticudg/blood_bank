@@ -9,7 +9,7 @@
 				</div>
 				<div class="pull-left info">
 					<p>
-						<router-link :to="{ name: 'profile' }" style="color: black;">
+						<router-link :to="{ name: 'profile' }">
 							{{ all.user.fullName }}
 						</router-link>
 					</p>

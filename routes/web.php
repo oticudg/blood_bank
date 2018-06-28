@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('update-user', 'ProfileController@editUser');
     });
 
+    Route::resource('donant', 'Donation\DonorController')->except(['create', 'edit']);
+
     Route::post('admin/app', 'RouteController@canPermission');
 
 });

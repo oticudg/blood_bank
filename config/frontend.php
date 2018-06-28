@@ -32,8 +32,8 @@ return [
     | Menu Logos
     |--------------------------------------------------------------------------
     */
-    'logo_lg'   => '<i class="fa fa-bank"></i> <b>Blood</b>Bank',
-    'logo_mini' => '<i class="fa fa-bank"></i><b>B</b>B',
+    'logo_lg'   => '<i class="fa fa-heartbeat"></i> <b>Blood</b>Bank',
+    'logo_mini' => '<i class="fa fa-heartbeat"></i><b>B</b>B',
 
     /*
     |--------------------------------------------------------------------------
@@ -74,5 +74,5 @@ return [
     |
     */
 
-    'theme' => 'skin-red-light',
+    'theme' => 'skin-red',
 ];

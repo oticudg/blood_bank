@@ -16,25 +16,27 @@
 </template>
 
 <script>
-export default {
-    name: 'input-form',
-    props: {
-        name: {},
-        msg: {},
-        type: {
-            default: 'text'
+    export default {
+        name: 'input-form',
+        props: {
+            name: {},
+            msg: {},
+            type: {
+                default: 'text'
+            },
+            placeholder: {},
+            required: {
+                default: false
+            },
+            value: {},
+            readonly: {
+                default: false
+            }
         },
-        placeholder: {},
-        required: {},
-        value: {},
-        readonly: {
-            default: false
-        }
-    },
-    methods: {
-        updateValue: function (value) {
-          this.$emit('input', value)
-        }
-    }
-}
+        methods: {
+            updateValue: function (value) {
+              this.$emit('input', value)
+          }
+      }
+  }
 </script>

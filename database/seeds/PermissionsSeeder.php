@@ -113,10 +113,56 @@ class PermissionsSeeder extends Seeder
         ]);
 
         App\Models\Permisologia\Permission::create([
-        	'name' => 'Modificar Permisos',
-        	'module' => 'permission',
-        	'action' => 'update',
-        	'description' => 'Permiso para Eliminar Permisos'
+            'name' => 'Modificar Permisos',
+            'module' => 'permission',
+            'action' => 'update',
+            'description' => 'Permiso para Eliminar Permisos'
         ]);
+
+        /**
+         * Permisos de Donaciones
+         */
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Ver Donantes',
+            'module' => 'donor',
+            'action' => 'index',
+            'description' => 'Permiso para ver donantes'
+        ]);
+
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Crear Donantes',
+            'module' => 'donor',
+            'action' => 'store',
+            'description' => 'Permiso para registrar donantes'
+        ]);
+
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Ver Donante',
+            'module' => 'donor',
+            'action' => 'show',
+            'description' => 'Permiso para ver un donantes'
+        ]);
+
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Actualizar Donantes',
+            'module' => 'donor',
+            'action' => 'update',
+            'description' => 'Permiso para actualizar donantes'
+        ]);
+
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Eliminar Donantes',
+            'module' => 'donor',
+            'action' => 'destroy',
+            'description' => 'Permiso para Eliminar donantes'
+        ]);
+
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Consultar Donante',
+            'module' => 'donor',
+            'action' => 'search',
+            'description' => 'Permiso para Eliminar donantes'
+        ]);
+
     }
 }

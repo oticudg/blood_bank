@@ -105,10 +105,11 @@ trait ModelsTrait
 	 * @model All
 	 * @return Object
 	 */
-	public static function dataForPaginate()
+	public static function dataForPaginate($select = ['*'])
 	{
 		return Self::orderBy(request()->order?:'id', request()->dir?:'DESC')
 		->search(request()->search)
+		->select($select)
 		->paginate(request()->num?:10);
 	}
 
