@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Donation;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Donation\BloodDonor;
+use App\Models\Donation\ { BloodDonor, Question };
 use App\Http\Requests\ { DonorStoreRequest, DonorUpdateRequest };
 
 class DonorController extends Controller
@@ -45,6 +45,10 @@ class DonorController extends Controller
     {
         $blooddonor = BloodDonor::findOrFail($id);
         $blooddonor->fullName = $blooddonor->name . ' ' . $blooddonor->last_name;
+        if (request()->interview == 1) {
+            $questions = Question::whereIn('sex', ['T', $blooddonor->sex])->get();
+            return response()->json(compact('blooddonor', 'questions'));
+        }
         return response()->json($blooddonor);
     }
 

@@ -6,6 +6,7 @@ import Users from './components/views/UsersComponent.vue';
 import Roles from './components/views/RolesComponent.vue';
 import Permissions from './components/views/PermissionsComponent.vue';
 import Donor from './components/views/DonorsComponent.vue';
+import Interview from './components/views/DonorInterviewComponent.vue';
 import NotFound from './components/views/NotFoundComponent.vue';
 
 const router = new VueRouter({
@@ -51,6 +52,11 @@ const router = new VueRouter({
 		path: '/donantes',
 		name: 'donor.index',
 		component: Donor,
+	},
+	{
+		path: '/donantes/:id',
+		name: 'donor.interview',
+		component: Interview,
 	},
 	// {
 	// 	path: '/donantes',

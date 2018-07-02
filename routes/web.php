@@ -55,13 +55,22 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
 
+    /**
+     * Perfil, Acceso para todos los usuarios.
+     * "/*"
+     */
     Route::group(['prefix' => '/', 'namespace' => 'Dashboard', 'as' => 'Dashboard::'], function () {
         Route::get('profile', 'ProfileController@show');
         Route::post('change-pass', 'ProfileController@editPassword');
         Route::post('update-user', 'ProfileController@editUser');
     });
 
-    Route::resource('donant', 'Donation\DonorController')->except(['create', 'edit']);
+    Route::group(['namespace' => 'Donation', 'as' => 'Donation::'], function () {
+        // Donor Routes...
+        Route::resource('donant', 'DonorController')->except(['create', 'edit']);
+        // Interview Routes...
+        // Route::post('interview/all', 'QuestionController@index');
+    });
 
     Route::post('admin/app', 'RouteController@canPermission');
 

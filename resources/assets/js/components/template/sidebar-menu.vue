@@ -32,7 +32,7 @@
                 </li>
             </ul>
         </li>
-        <li class="treeview" v-if="can(['donation.index'])">
+        <li class="treeview" v-if="can(['donor.index'])">
             <a href="#">
                 <i class="fa fa-laptop"></i>
                 <span>Actividades</span>
@@ -41,9 +41,9 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li v-if="can('donation.index')">
+                <li v-if="can('donor.index')">
                     <router-link :to="{ name: 'donor.index' }">
-                        <i class="fa fa-users"></i> Donaciones
+                        <i class="fa fa-users"></i> Donantes
                     </router-link>
                 </li>
                 <!-- <li>

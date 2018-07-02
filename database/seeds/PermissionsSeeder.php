@@ -164,5 +164,12 @@ class PermissionsSeeder extends Seeder
             'description' => 'Permiso para Eliminar donantes'
         ]);
 
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Entrevistar Donante',
+            'module' => 'donor',
+            'action' => 'interview',
+            'description' => 'Permiso para realizar la entrevista al donantes'
+        ]);
+
     }
 }
