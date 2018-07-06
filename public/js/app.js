@@ -72496,6 +72496,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -72523,6 +72524,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 				columns: [{ title: 'Nombre y Apellido', field: 'fullName', sort: 'name', sortable: true }, { title: 'Grupo Sanguineo', field: 'blood_group', sortable: true }, { title: 'Cédula', field: 'num_id', sortable: true }, { title: 'Sexo', field: 'sex', sortable: true }, { title: 'Edad', field: 'age', sort: 'birthdate', sortable: true }]
 			}
 		};
+	},
+	mounted: function mounted() {
+		$('body').removeClass('sidebar-collapse');
 	},
 
 	methods: {
@@ -73528,7 +73532,7 @@ var render = function() {
               click: function($event) {
                 _vm.deleted(
                   "/donant/" + _vm.id,
-                  _vm.$children[2].get,
+                  _vm.$children[1].get,
                   "fullName"
                 )
               }
@@ -73537,32 +73541,34 @@ var render = function() {
           [_c("span", { staticClass: "glyphicon glyphicon-trash" })]
         ),
         _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            directives: [
+        _vm.can("donor.interview")
+          ? _c(
+              "router-link",
               {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.id,
-                expression: "id"
-              }
-            ],
-            staticClass: "btn btn-default btn-xs",
-            attrs: {
-              to: { name: "donor.interview", params: { id: _vm.id } },
-              "data-tool": "tooltip",
-              title: "Nueva Entrevista"
-            }
-          },
-          [_c("span", { staticClass: "glyphicon glyphicon-list" })]
-        ),
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.id,
+                    expression: "id"
+                  }
+                ],
+                staticClass: "btn btn-default btn-xs",
+                attrs: {
+                  to: { name: "donor.interview", params: { id: _vm.id } },
+                  "data-tool": "tooltip",
+                  title: "Nueva Entrevista"
+                }
+              },
+              [_c("span", { staticClass: "glyphicon glyphicon-list" })]
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c("v-modal-form", {
           attrs: { formData: _vm.formData },
           on: {
             input: function($event) {
-              _vm.$children[2].get()
+              _vm.$children[1].get()
             }
           }
         })
@@ -73707,41 +73713,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-// import Tabla from './../partials/table.vue';
-// import Modal from './../forms/modal-form-donor.vue';
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Interview',
-	components: {
-		// 'v-table': Tabla,
-		// 'v-modal-form': Modal,
-	},
 	data: function data() {
 		return {
-			// id: null,
 			questions: [],
 			data: {
 				fullName: ''
-			},
-			formData: {
-				// ready: true,
-				// title: '',
-				// url: '',
-				// ico: '',
-				// cond: '',
-				// form: false,
-				// data:  {}
-			},
-			tabla: {
-				columns: [
-					// { title: 'Nombre y Apellido', field: 'fullName', sort: 'name', sortable: true },
-					// { title: 'Grupo Sanguineo', field: 'blood_group', sortable: true },
-					// { title: 'Cédula', field: 'num_id', sortable: true },
-					// { title: 'Sexo', field: 'sex', sortable: true },
-					// { title: 'Edad', field: 'age', sort: 'birthdate', sortable: true },
-				]
 			}
 		};
 	},
@@ -73752,52 +73750,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		axios.get('/donant/' + this.$route.params.id + '?interview=1').then(function (response) {
 			_this.data = response.data.blooddonor;
 			_this.questions = response.data.questions;
+			for (var i in _this.questions) {
+				_this.questions[i].answer = true;
+			}
+		}).catch(function (error) {
+			toastr.error('Error al encontrar donante.');
+			_this.$router.push({ path: '/donantes' });
+			setTimeout(function () {
+				console.clear();
+			});
 		});
 	},
 
 	methods: {
-		openform: function openform(cond) {
-			var user = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-			// this.formData.ready = false;
-			if (cond == 'create') {
-				// this.formData.title = ' Registrar Donante.';
-				// this.formData.url = '/donant';
-				// this.formData.ico = 'plus';
-				// this.formData.form = false;
-				// this.formData.data = {
-				// 	name: '',
-				// 	age: '',
-				// 	birthdate: '',
-				// 	blood_group: '',
-				// 	current_occupation: '',
-				// 	email: '',
-				// 	last_name: '',
-				// 	location_home: '',
-				// 	location_work: '',
-				// 	name: '',
-				// 	num_id: '',
-				// 	observation: '',
-				// 	phone_home: '',
-				// 	phone_person: '',
-				// 	phone_work: '',
-				// 	place_birthdate: '',
-				// 	profession: '',
-				// 	sex: '',
-				// };
-				// this.formData.ready = true;
-			} else if (cond == 'edit') {}
-			// this.formData.url = '/donant/' + this.id;
-			// axios.get(this.formData.url)
-			// .then(response => {
-			// 	this.formData.ico = 'edit';
-			// 	this.formData.title = 'Editar Donante: ' + response.data.fullName;
-			// 	this.formData.data = response.data;
-			// 	this.formData.ready = true;
-			// });
-
-			// $('#donor-form').modal('toggle');
-			// this.formData.cond = cond;
+		register: function register() {
+			axios.post('/interview?id=' + this.data.id, { questions: this.questions }).then(function (response) {
+				toastr.success('Entrevista Guardada');
+			});
 		}
 	}
 });
@@ -73822,45 +73791,195 @@ var render = function() {
     _c("div", { staticClass: "box-body" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-6" }, [
-          _c("table", { staticClass: "table table-condensed table-hover" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.questions, function(q, index) {
-                return index < 18
-                  ? _c("tr", [
-                      _c("td", [_vm._v(_vm._s(index + 1))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(q.question))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("si / no")])
-                    ])
-                  : _vm._e()
-              })
-            )
-          ])
+          _c(
+            "table",
+            { staticClass: "table table-condensed table-hover table-striped" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.questions, function(q, index) {
+                  return index < 18
+                    ? _c("tr", [
+                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("¿" + _vm._s(q.question) + "?")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "onoffswitch" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: q.answer,
+                                  expression: "q.answer"
+                                }
+                              ],
+                              staticClass: "onoffswitch-checkbox",
+                              attrs: {
+                                type: "checkbox",
+                                id: "myonoffswitch-" + q.id
+                              },
+                              domProps: {
+                                checked: q.answer,
+                                checked: Array.isArray(q.answer)
+                                  ? _vm._i(q.answer, null) > -1
+                                  : q.answer
+                              },
+                              on: {
+                                click: function($event) {
+                                  q.answer = !q.answer
+                                },
+                                change: function($event) {
+                                  var $$a = q.answer,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 && (q.answer = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (q.answer = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.$set(q, "answer", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "onoffswitch-label",
+                                attrs: { for: "myonoffswitch-" + q.id }
+                              },
+                              [
+                                _c("span", {
+                                  staticClass: "onoffswitch-inner"
+                                }),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "onoffswitch-switch"
+                                })
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    : _vm._e()
+                })
+              )
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
-          _c("table", { staticClass: "table table-condensed table-hover" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.questions, function(q, index) {
-                return index >= 18
-                  ? _c("tr", [
-                      _c("td", [_vm._v(_vm._s(index + 1))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(q.question))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("si / no")])
-                    ])
-                  : _vm._e()
-              })
-            )
-          ])
+          _c(
+            "table",
+            { staticClass: "table table-condensed table-hover table-striped" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.questions, function(q, index) {
+                  return index >= 18
+                    ? _c("tr", [
+                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("¿" + _vm._s(q.question) + "?")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "onoffswitch" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: q.answer,
+                                  expression: "q.answer"
+                                }
+                              ],
+                              staticClass: "onoffswitch-checkbox",
+                              attrs: {
+                                type: "checkbox",
+                                id: "myonoffswitch-" + q.id
+                              },
+                              domProps: {
+                                checked: Array.isArray(q.answer)
+                                  ? _vm._i(q.answer, null) > -1
+                                  : q.answer
+                              },
+                              on: {
+                                click: function($event) {
+                                  q.answer = !q.answer
+                                },
+                                change: function($event) {
+                                  var $$a = q.answer,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 && (q.answer = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (q.answer = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.$set(q, "answer", $$c)
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "onoffswitch-label",
+                                attrs: { for: "myonoffswitch-" + q.id }
+                              },
+                              [
+                                _c("span", {
+                                  staticClass: "onoffswitch-inner"
+                                }),
+                                _vm._v(" "),
+                                _c("span", {
+                                  staticClass: "onoffswitch-switch"
+                                })
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    : _vm._e()
+                })
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12 text-center" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-success", on: { click: _vm.register } },
+            [
+              _c("i", { staticClass: "glyphicon glyphicon-ok" }),
+              _vm._v(" Registrar")
+            ]
+          )
         ])
       ])
     ])
@@ -73894,6 +74013,22 @@ var staticRenderFns = [
         _c("th", [_vm._v("Respuesta")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-danger",
+        attrs: { onclick: "javascript:history.back()" }
+      },
+      [
+        _c("i", { staticClass: "glyphicon glyphicon-remove" }),
+        _vm._v(" Cancelar")
+      ]
+    )
   }
 ]
 render._withStripped = true

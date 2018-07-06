@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Donation;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Donation\Question;
+use App\Models\Donation\ { Question, BloodDonor, BloodDonorsQuestions };
 
 class QuestionController extends Controller
 {
@@ -36,7 +36,19 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validate($request, [
+            'id' => 'required|numeric',
+            'questions' => 'required|array'
+        ]);
+        $question = (BloodDonor::findOrFail($data['id'])->questions->max('question') ?: 0) + 1;
+        foreach ($data['questions'] as $d) {
+            BloodDonorsQuestions::create([
+                'answer' => $d['answer'],
+                'blood_donor_id' => $data['id'],
+                'question' => $question,
+                'question_id' => $d['id'],
+            ]);
+        }
     }
 
     /**

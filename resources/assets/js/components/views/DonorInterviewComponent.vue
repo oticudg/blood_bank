@@ -6,7 +6,7 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-6">
-					<table class="table table-condensed table-hover">
+					<table class="table table-condensed table-hover table-striped">
 						<thead>
 							<tr>
 								<th>N°</th>
@@ -15,16 +15,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(q, index) in questions" v-if="index <18">
+							<tr v-for="(q, index) in questions" v-if="index < 18">
 								<td>{{ index + 1 }}</td>
-								<td>{{ q.question }}</td> 
-								<td>si / no</td>
+								<td>¿{{ q.question }}?</td> 
+								<td>
+									<div class="onoffswitch">
+										<input type="checkbox" class="onoffswitch-checkbox" :id="'myonoffswitch-' + q.id" v-model="q.answer" @click="q.answer = !q.answer" :checked="q.answer">
+										<label class="onoffswitch-label" :for="'myonoffswitch-'+q.id">
+											<span class="onoffswitch-inner"></span>
+											<span class="onoffswitch-switch"></span>
+										</label>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="col-md-6">
-					<table class="table table-condensed table-hover">
+					<table class="table table-condensed table-hover table-striped">
 						<thead>
 							<tr>
 								<th>N°</th>
@@ -33,55 +41,39 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="(q, index) in questions" v-if="index >=18">
+							<tr v-for="(q, index) in questions" v-if="index >= 18">
 								<td>{{ index + 1 }}</td>
-								<td>{{ q.question }}</td> 
-								<td>si / no</td>
+								<td>¿{{ q.question }}?</td> 
+								<td>
+									<div class="onoffswitch">
+										<input type="checkbox" class="onoffswitch-checkbox" :id="'myonoffswitch-' + q.id" v-model="q.answer" @click="q.answer = !q.answer">
+										<label class="onoffswitch-label" :for="'myonoffswitch-'+q.id">
+											<span class="onoffswitch-inner"></span>
+											<span class="onoffswitch-switch"></span>
+										</label>
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<!-- <p class="col-md-4" >{{ index + 1 }}: {{ q.question }}</p> -->
+				<div class="col-md-12 text-center">
+					<button class="btn btn-danger" onclick="javascript:history.back()"><i class="glyphicon glyphicon-remove"></i> Cancelar</button>
+					<button class="btn btn-success" @click="register"><i class="glyphicon glyphicon-ok"></i> Registrar</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	// import Tabla from './../partials/table.vue';
-	// import Modal from './../forms/modal-form-donor.vue';
-
-
 	export default {
 		name: 'Interview',
-		components: {
-			// 'v-table': Tabla,
-			// 'v-modal-form': Modal,
-		},
 		data() {
 			return {
-				// id: null,
 				questions: [],
 				data: {
 					fullName: ''
-				},
-				formData: {
-					// ready: true,
-					// title: '',
-					// url: '',
-					// ico: '',
-					// cond: '',
-					// form: false,
-					// data:  {}
-				},
-				tabla: {
-					columns: [
-					// { title: 'Nombre y Apellido', field: 'fullName', sort: 'name', sortable: true },
-					// { title: 'Grupo Sanguineo', field: 'blood_group', sortable: true },
-					// { title: 'Cédula', field: 'num_id', sortable: true },
-					// { title: 'Sexo', field: 'sex', sortable: true },
-					// { title: 'Edad', field: 'age', sort: 'birthdate', sortable: true },
-					]
 				}
 			};
 		},
@@ -91,49 +83,20 @@
 			.then(response => {
 				this.data = response.data.blooddonor;
 				this.questions = response.data.questions;
+				for(let i in this.questions) this.questions[i].answer = true;
+			})
+			.catch(error => {
+				toastr.error('Error al encontrar donante.');
+				this.$router.push({ path: '/donantes' });
+				setTimeout(() => { console.clear(); });
 			});
 		},
 		methods: {
-			openform: function (cond, user = null) {
-				// this.formData.ready = false;
-				if (cond == 'create') {
-					// this.formData.title = ' Registrar Donante.';
-					// this.formData.url = '/donant';
-					// this.formData.ico = 'plus';
-					// this.formData.form = false;
-					// this.formData.data = {
-					// 	name: '',
-					// 	age: '',
-					// 	birthdate: '',
-					// 	blood_group: '',
-					// 	current_occupation: '',
-					// 	email: '',
-					// 	last_name: '',
-					// 	location_home: '',
-					// 	location_work: '',
-					// 	name: '',
-					// 	num_id: '',
-					// 	observation: '',
-					// 	phone_home: '',
-					// 	phone_person: '',
-					// 	phone_work: '',
-					// 	place_birthdate: '',
-					// 	profession: '',
-					// 	sex: '',
-					// };
-					// this.formData.ready = true;
-				} else if (cond == 'edit') {
-					// this.formData.url = '/donant/' + this.id;
-					// axios.get(this.formData.url)
-					// .then(response => {
-					// 	this.formData.ico = 'edit';
-					// 	this.formData.title = 'Editar Donante: ' + response.data.fullName;
-					// 	this.formData.data = response.data;
-					// 	this.formData.ready = true;
-					// });
-				}
-				// $('#donor-form').modal('toggle');
-				// this.formData.cond = cond;
+			register: function () {
+				axios.post('/interview?id=' + this.data.id, { questions: this.questions })
+				.then(response => {
+					toastr.success('Entrevista Guardada');
+				});
 			}
 		}
 	}

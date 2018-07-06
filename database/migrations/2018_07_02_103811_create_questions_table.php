@@ -20,6 +20,20 @@ class CreateQuestionsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('blood_donors_questions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('question');
+            $table->unsignedInteger('question_id');
+            $table->unsignedInteger('blood_donor_id');
+            $table->boolean('answer');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('blood_donor_id')->references('id')->on('blood_donors')->onDelete('cascade');
+        });
+
     }
 
     /**
@@ -30,5 +44,6 @@ class CreateQuestionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('questions');
+        Schema::dropIfExists('blood_donors_questions');
     }
 }

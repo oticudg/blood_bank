@@ -66,10 +66,12 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['namespace' => 'Donation', 'as' => 'Donation::'], function () {
+
         // Donor Routes...
         Route::resource('donant', 'DonorController')->except(['create', 'edit']);
+
         // Interview Routes...
-        // Route::post('interview/all', 'QuestionController@index');
+        Route::resource('interview', 'QuestionController')->except(['create', 'edit']);
     });
 
     Route::post('admin/app', 'RouteController@canPermission');

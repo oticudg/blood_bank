@@ -19,14 +19,15 @@
 			class="btn btn-default btn-xs"
 			data-tool="tooltip"
 			title="Borrar Donante"
-			@click="deleted('/donant/' + id, $children[2].get, 'fullName')"
+			@click="deleted('/donant/' + id, $children[1].get, 'fullName')"
 			v-show="id"><span class="glyphicon glyphicon-trash"></span></button>
 			<router-link :to="{ name: 'donor.interview', params: { id: id } }"
 			class="btn btn-default btn-xs"
 			data-tool="tooltip"
 			title="Nueva Entrevista"
-			v-show="id"><span class="glyphicon glyphicon-list"></span></router-link>
-			<v-modal-form :formData="formData" @input="$children[2].get()"></v-modal-form>
+			v-show="id"
+			v-if="can('donor.interview')"><span class="glyphicon glyphicon-list"></span></router-link>
+			<v-modal-form :formData="formData" @input="$children[1].get()"></v-modal-form>
 		</div>
 		<div class="box-body">
 			<div class="row">
@@ -72,6 +73,9 @@
 					]
 				}
 			};
+		},
+		mounted() {
+			$('body').removeClass('sidebar-collapse')
 		},
 		methods: {
 			openform: function (cond, user = null) {
