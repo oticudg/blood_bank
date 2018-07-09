@@ -6,7 +6,7 @@
 		<div class="box-body">
 			<div class="row">
 				<div class="col-md-6">
-					<table class="table table-condensed table-hover table-striped">
+					<table class="table table-condensed table-hover table-striped table-bordered">
 						<thead>
 							<tr>
 								<th>N°</th>
@@ -32,7 +32,7 @@
 					</table>
 				</div>
 				<div class="col-md-6">
-					<table class="table table-condensed table-hover table-striped">
+					<table class="table table-condensed table-hover table-striped table-bordered">
 						<thead>
 							<tr>
 								<th>N°</th>
@@ -57,9 +57,13 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="col-md-12 text-center">
+				<div class="col-md-12 text-center" v-if="!this.$route.params.id2">
 					<button class="btn btn-danger" onclick="javascript:history.back()"><i class="glyphicon glyphicon-remove"></i> Cancelar</button>
 					<button class="btn btn-success" @click="register"><i class="glyphicon glyphicon-ok"></i> Registrar</button>
+				</div>
+				<div class="col-md-12 text-center" v-else>
+					<button class="btn btn-danger" onclick="javascript:history.back()"><i class="glyphicon glyphicon-arrow-left"></i> Atras</button>
+					<button class="btn btn-success" @click="register"><i class="glyphicon glyphicon-ok"></i> Actualizar</button>
 				</div>
 			</div>
 		</div>
@@ -78,25 +82,36 @@
 			};
 		},
 		mounted() {
-			$('body').addClass('sidebar-collapse')
-			axios.get('/donant/' + this.$route.params.id + '?interview=1')
+			$('body').addClass('sidebar-collapse');
+			let data = '?interview=1';
+			if (this.$route.params.id2) data += '&id=' + this.$route.params.id2;
+			axios.get('/donant/' + this.$route.params.id + data)
 			.then(response => {
 				this.data = response.data.blooddonor;
 				this.questions = response.data.questions;
-				for(let i in this.questions) this.questions[i].answer = true;
+				if (!this.$route.params.id2) for(let i in this.questions) this.questions[i].answer = true;
 			})
 			.catch(error => {
 				toastr.error('Error al encontrar donante.');
 				this.$router.push({ path: '/donantes' });
-				setTimeout(() => { console.clear(); });
+				setTimeout(() => { console.clear(); }, 100);
 			});
 		},
 		methods: {
 			register: function () {
-				axios.post('/interview?id=' + this.data.id, { questions: this.questions })
-				.then(response => {
-					toastr.success('Entrevista Guardada');
-				});
+				if (!this.$route.params.id2) {
+					axios.post('/interview', { id: this.data.id, questions: this.questions })
+					.then(response => {
+						toastr.success('Entrevista Guardada');
+						setTimeout(() => { this.$router.push({ path: '/donantes' }); }, 500);
+					});
+				} else {
+					axios.put('/interview/' + this.data.id, { questions: this.questions })
+					.then(response => {
+						toastr.success('Entrevista Actualizada');
+						setTimeout(() => { this.$router.push({ path: '/donantes' }); }, 500);
+					});
+				}
 			}
 		}
 	}

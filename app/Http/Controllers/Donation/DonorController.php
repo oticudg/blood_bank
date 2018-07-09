@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Donation;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Donation\ { BloodDonor, Question };
+use App\Models\Donation\ { BloodDonor, Question, BloodDonorsQuestions };
 use App\Http\Requests\ { DonorStoreRequest, DonorUpdateRequest };
 
 class DonorController extends Controller
@@ -13,7 +13,6 @@ class DonorController extends Controller
     public function __construct()
     {
         $this->middleware('onlyAjax');
-        $this->middleware('can:donor,search')->only(['searchDonor']);
         $this->middleware('can:donor,index')->only(['index']);
         $this->middleware('can:donor,show')->only(['show']);
         $this->middleware('can:donor,destroy')->only(['destroy']);
@@ -46,6 +45,15 @@ class DonorController extends Controller
         $blooddonor = BloodDonor::findOrFail($id);
         $blooddonor->fullName = $blooddonor->name . ' ' . $blooddonor->last_name;
         if (request()->interview == 1) {
+            if (request()->id) {
+                $questions = BloodDonorsQuestions::where('blood_donor_id', '=', $id)->where('interview', '=', request()->id)->get();
+                $questions->each(function ($q) {
+                    $value = $q->question->question;
+                    unset($q->question);
+                    $q->question = $value;
+                });
+                return response()->json(compact('blooddonor', 'questions'));
+            }
             $questions = Question::whereIn('sex', ['T', $blooddonor->sex])->get();
             return response()->json(compact('blooddonor', 'questions'));
         }

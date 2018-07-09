@@ -58,6 +58,11 @@ const router = new VueRouter({
 		name: 'donor.interview',
 		component: Interview,
 	},
+	{
+		path: '/donantes/:id/:id2',
+		name: 'donor.interviewEdit',
+		component: Interview,
+	},
 	// {
 	// 	path: '/donantes',
 	// 	name: 'donation.index',

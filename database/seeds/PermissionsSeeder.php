@@ -165,10 +165,17 @@ class PermissionsSeeder extends Seeder
         ]);
 
         App\Models\Permisologia\Permission::create([
-            'name' => 'Entrevistar Donante',
+            'name' => 'Realizar Entrevistar',
             'module' => 'donor',
             'action' => 'interview',
             'description' => 'Permiso para realizar la entrevista al donantes'
+        ]);
+
+        App\Models\Permisologia\Permission::create([
+            'name' => 'Editar Entrevista',
+            'module' => 'donor',
+            'action' => 'interviewEdit',
+            'description' => 'Permiso para editar la entrevista al donantes'
         ]);
 
     }

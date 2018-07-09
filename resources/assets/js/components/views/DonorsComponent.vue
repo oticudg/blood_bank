@@ -11,6 +11,12 @@
 			<button type="button"
 			class="btn btn-default btn-xs"
 			data-tool="tooltip"
+			title="Ver Donante"
+			@click="openform('show')"
+			v-show="id"><span class="fa fa-eye"></span></button>
+			<button type="button"
+			class="btn btn-default btn-xs"
+			data-tool="tooltip"
 			title="Editar Donante"
 			@click="openform('edit')"
 			v-show="id"
@@ -19,15 +25,10 @@
 			class="btn btn-default btn-xs"
 			data-tool="tooltip"
 			title="Borrar Donante"
-			@click="deleted('/donant/' + id, $children[1].get, 'fullName')"
+			@click="deleted('/donant/' + id, $children[2].get, 'fullName')"
 			v-show="id"><span class="glyphicon glyphicon-trash"></span></button>
-			<router-link :to="{ name: 'donor.interview', params: { id: id } }"
-			class="btn btn-default btn-xs"
-			data-tool="tooltip"
-			title="Nueva Entrevista"
-			v-show="id"
-			v-if="can('donor.interview')"><span class="glyphicon glyphicon-list"></span></router-link>
-			<v-modal-form :formData="formData" @input="$children[1].get()"></v-modal-form>
+			<v-modal-form :formData="formData" @input="$children[2].get()"></v-modal-form>
+			<v-modal-show :formData="formData" @input=""></v-modal-show>
 		</div>
 		<div class="box-body">
 			<div class="row">
@@ -42,13 +43,14 @@
 <script>
 	import Tabla from './../partials/table.vue';
 	import Modal from './../forms/modal-form-donor.vue';
-
+	import Modal2 from './../show/modal-show-donor.vue';
 
 	export default {
 		name: 'Donaciones',
 		components: {
 			'v-table': Tabla,
 			'v-modal-form': Modal,
+			'v-modal-show': Modal2,
 		},
 		data() {
 			return {
@@ -106,17 +108,25 @@
 						sex: '',
 					};
 					this.formData.ready = true;
-				} else if (cond == 'edit') {
+				} else if (cond == 'edit' || cond == 'show') {
 					this.formData.url = '/donant/' + this.id;
 					axios.get(this.formData.url)
 					.then(response => {
 						this.formData.ico = 'edit';
 						this.formData.title = 'Editar Donante: ' + response.data.fullName;
+						if (cond == 'show') {
+							this.formData.ico = ' fa fa-eye';
+							this.formData.title = 'Donante: ' + response.data.fullName;
+						}
 						this.formData.data = response.data;
 						this.formData.ready = true;
 					});
+					if (cond == 'show') {
+						$('#donor-show').modal('show');
+						return;
+					}
 				}
-				$('#donor-form').modal('toggle');
+				$('#donor-form').modal('show');
 				this.formData.cond = cond;
 			}
 		}

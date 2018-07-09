@@ -23,7 +23,7 @@ class CreateQuestionsTable extends Migration
 
         Schema::create('blood_donors_questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('question');
+            $table->unsignedInteger('interview');
             $table->unsignedInteger('question_id');
             $table->unsignedInteger('blood_donor_id');
             $table->boolean('answer');

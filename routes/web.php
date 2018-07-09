@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Interview Routes...
         Route::resource('interview', 'QuestionController')->except(['create', 'edit']);
+
     });
 
     Route::post('admin/app', 'RouteController@canPermission');

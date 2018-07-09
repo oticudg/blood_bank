@@ -145,7 +145,7 @@
   import datePicker from 'vue-bootstrap-datetimepicker';
 
   export default {
-    name: 'modal-form-user',
+    name: 'modal-form-donor',
     components: {
       'modal': Modal,
       'v-input': Input,

@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<div class="col-md-12">
-			<header-table :n="n" :c="nc" @changeN="num = arguments[0]" @changeS="search = arguments[0]"></header-table>
+			<header-table v-if="t_head" :n="n" :c="nc" @changeN="num = arguments[0]" @changeS="search = arguments[0]"></header-table>
 			<div class="table-responsive">
 				<table :id="id" class="table table-bordered table-hover table-condensed">
 					<thead>
@@ -41,6 +41,9 @@ th span, tbody tr {
 			uri: {},
 			columns: {},
 			id: {},
+			t_head: {
+				default: true
+			},
 			n: {
 				default: function () {
 					return [10,20,30];
@@ -48,6 +51,9 @@ th span, tbody tr {
 			},
 			nc: {
 				default: 10
+			},
+			uridata: {
+				default: null
 			}
 		},
 		data() {
@@ -108,6 +114,8 @@ th span, tbody tr {
 				if (this.search) url += '&search=' + this.search;
 				if (this.dir) url += '&dir=' + this.dir;
 				if (this.order) url += '&order=' + this.order;
+				if (this.uridata) url += '&data=' + this.uridata;
+
 				$('tbody tr').removeClass('active');
 				this.$emit('output', false);
 				axios.get(url)
