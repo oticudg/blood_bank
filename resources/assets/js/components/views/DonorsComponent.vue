@@ -8,12 +8,11 @@
 			title="Registrar Donante"
 			@click="openform('create')"
 			v-if="can('donor.store')"><span class="glyphicon glyphicon-plus"></span></button>
-			<button type="button"
-			class="btn btn-default btn-xs"
+			<router-link class="btn btn-default btn-xs"
+			:to="{ name: 'donor.show', params: { id: id } }"
+			v-show="id"
 			data-tool="tooltip"
-			title="Ver Donante"
-			@click="openform('show')"
-			v-show="id"><span class="fa fa-eye"></span></button>
+			title="Ver Donante"><span class="fa fa-eye"></span></router-link>
 			<button type="button"
 			class="btn btn-default btn-xs"
 			data-tool="tooltip"
@@ -28,7 +27,6 @@
 			@click="deleted('/donant/' + id, $children[2].get, 'fullName')"
 			v-show="id"><span class="glyphicon glyphicon-trash"></span></button>
 			<v-modal-form :formData="formData" @input="$children[2].get()"></v-modal-form>
-			<v-modal-show :formData="formData" @input=""></v-modal-show>
 		</div>
 		<div class="box-body">
 			<div class="row">
@@ -43,18 +41,16 @@
 <script>
 	import Tabla from './../partials/table.vue';
 	import Modal from './../forms/modal-form-donor.vue';
-	import Modal2 from './../show/modal-show-donor.vue';
 
 	export default {
-		name: 'Donaciones',
+		name: 'Donors',
 		components: {
 			'v-table': Tabla,
 			'v-modal-form': Modal,
-			'v-modal-show': Modal2,
 		},
 		data() {
 			return {
-				id: null,
+				id: 0,
 				data: null,
 				formData: {
 					ready: true,
@@ -91,7 +87,7 @@
 						name: '',
 						age: '',
 						birthdate: '',
-						blood_group: '',
+						blood_group_id: null,
 						current_occupation: '',
 						email: '',
 						last_name: '',
@@ -108,23 +104,15 @@
 						sex: '',
 					};
 					this.formData.ready = true;
-				} else if (cond == 'edit' || cond == 'show') {
+				} else if (cond == 'edit') {
 					this.formData.url = '/donant/' + this.id;
 					axios.get(this.formData.url)
 					.then(response => {
 						this.formData.ico = 'edit';
 						this.formData.title = 'Editar Donante: ' + response.data.fullName;
-						if (cond == 'show') {
-							this.formData.ico = ' fa fa-eye';
-							this.formData.title = 'Donante: ' + response.data.fullName;
-						}
 						this.formData.data = response.data;
 						this.formData.ready = true;
 					});
-					if (cond == 'show') {
-						$('#donor-show').modal('show');
-						return;
-					}
 				}
 				$('#donor-form').modal('show');
 				this.formData.cond = cond;

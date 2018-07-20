@@ -69,9 +69,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         // Donor Routes...
         Route::resource('donant', 'DonorController')->except(['create', 'edit']);
+        Route::post('get-data-donants', 'DonorController@dataForRegister');
 
         // Interview Routes...
-        Route::resource('interview', 'QuestionController')->except(['create', 'edit']);
+        // Route::resource('interview', 'QuestionController')->except(['create', 'edit']);
+        // Route::resource('interview', 'QuestionController')->only(['store', 'update']);
+
+        // Donations Routes...
+        Route::resource('donations', 'DonationController')->except(['create', 'edit']);
+        Route::post('get-data-donation/{donor_id}/{donation_id?}', 'DonationController@dataForRegister');
 
     });
 

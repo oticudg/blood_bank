@@ -79,18 +79,11 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="blood_group" class="control-label">
-                        <span class="glyphicon glyphicon-compressed"></span> Grupo sanguineo:
+                        <span class="glyphicon glyphicon-compressed"></span> Grupo sanguíneo:
                       </label>
-                      <select id="blood_group" class="form-control" v-model="formData.data.blood_group">
-                        <option value="">Seleccione el tipeaje</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
+                      <select id="blood_group" class="form-control" v-model="formData.data.blood_group_id">
+                        <option :value="null">Seleccione el tipeaje</option>
+                        <option v-for="d in data['bloodgroup']" :value="d.id" v-text="d.name"></option>
                       </select>
                       <small id="blood_groupHelp" class="form-text text-muted">
                         <span v-text="msg.blood_group"></span>
@@ -154,6 +147,7 @@
     props: ['formData'],
     data () {
       return {
+        data: [],
         option: {
           format: 'YYYY-MM-DD',
           useCurrent: false,
@@ -196,6 +190,12 @@
         }
       };
     },
+    mounted() {
+      axios.post('get-data-donants')
+      .then(response => {
+        this.data = response.data;
+      });
+    },
     methods: {
       registrar: function (el) {
         this.restoreMsg(this.msg);
@@ -203,15 +203,15 @@
           axios.post(this.formData.url, this.formData.data)
           .then(response => {
             toastr.success('Donante Registrado');
-            this.$emit('input');
-            $('#donor-form').modal('toggle');
+            this.$router.push({ name: 'donor.show', params: { id: response.data } });
+            $('#donor-form').modal('hide');
           });
         } else {
           axios.put(this.formData.url, this.formData.data)
           .then(response => {
             toastr.success('Donante Actualizado');
             this.$emit('input');
-            $('#donor-form').modal('toggle');
+            $('#donor-form').modal('hide');
           });
         }
       }

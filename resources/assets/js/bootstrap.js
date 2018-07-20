@@ -60,7 +60,7 @@ axios.interceptors.request.use(function (config) {
 		// $('input, select').parent().removeClass('has-error');
 		$('small').removeClass('text-danger').addClass('text-muted');
 	}
-	$('button').removeAttr('disabled')
+	// $('button').removeAttr('disabled')
 	// $('small').parent().find('input, select').removeClass('is-invalid');
 	// $('.modal small').removeClass('text-danger').addClass('text-muted');
 	return config;
@@ -87,12 +87,10 @@ axios.interceptors.response.use(function (response) {
 	if (errors.status == 422) {
 		$('button, input').removeAttr('disabled')
 		errors = errors.data.errors;
-		for(let e in errors) {
-			$('small#' + e + 'Help').addClass('text-danger').text(errors[e][0]);
-		}
+		for(let e in errors) $('small#' + e.replace(".", "") + 'Help').addClass('text-danger').text(errors[e][0]);
 		toastr.warning('Error al realizar operación');
 		if (errors.msg) toastr.warning(errors.msg);
-		setTimeout(function () {console.clear();},100);
+		setTimeout(function () {console.clear();}, 100);
 	}
 	return Promise.reject(error);
 });

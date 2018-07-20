@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Donation;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Donation\ { BloodDonor, Question, BloodDonorsQuestions };
+use App\Models\Donation\ { BloodDonor, Question, BloodDonorsQuestions, BloodGroup };
 use App\Http\Requests\ { DonorStoreRequest, DonorUpdateRequest };
 
 class DonorController extends Controller
@@ -44,19 +44,7 @@ class DonorController extends Controller
     {
         $blooddonor = BloodDonor::findOrFail($id);
         $blooddonor->fullName = $blooddonor->name . ' ' . $blooddonor->last_name;
-        if (request()->interview == 1) {
-            if (request()->id) {
-                $questions = BloodDonorsQuestions::where('blood_donor_id', '=', $id)->where('interview', '=', request()->id)->get();
-                $questions->each(function ($q) {
-                    $value = $q->question->question;
-                    unset($q->question);
-                    $q->question = $value;
-                });
-                return response()->json(compact('blooddonor', 'questions'));
-            }
-            $questions = Question::whereIn('sex', ['T', $blooddonor->sex])->get();
-            return response()->json(compact('blooddonor', 'questions'));
-        }
+        $blooddonor->blood_group;
         return response()->json($blooddonor);
     }
 
@@ -69,7 +57,8 @@ class DonorController extends Controller
     public function store(DonorStoreRequest $request)
     {
         $data = $request->validated();
-        BloodDonor::create($data);
+        $blooddonor = BloodDonor::create($data);
+        return response()->json($blooddonor->id);
     }
 
     /**
@@ -81,8 +70,13 @@ class DonorController extends Controller
      */
     public function update(DonorUpdateRequest $request, $id)
     {
-        $blooddonor = BloodDonor::findOrFail($id)->update($request->validated());
-        return response()->json($blooddonor);
+        $blooddonor = BloodDonor::findOrFail($id);
+        if ($blooddonor->blood_group_id != $request->blood_group_id) {
+            foreach ($blooddonor->donations as $b) {
+                $b->update(['blood_group_id' => $request->blood_group_id]);
+            }
+        }
+        $blooddonor->update($request->validated());
     }
 
     /**
@@ -96,4 +90,16 @@ class DonorController extends Controller
         $blooddonor = BloodDonor::findOrFail($id)->delete();
         return response()->json($blooddonor);
     }
+
+    /**
+     * Retorna los datos que se usaran para crear y editar.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dataForRegister()
+    {
+        $bloodgroup = BloodGroup::get(['id', 'name']);
+        return response()->json(compact('bloodgroup'));
+    }
+
 }

@@ -13,6 +13,15 @@ class CreateBloodDonorsTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('blood_groups', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 5)->unique();
+            $table->text('description')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('blood_donors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 40);
@@ -21,8 +30,8 @@ class CreateBloodDonorsTable extends Migration
             $table->string('email', 50)->unique()->nullable();
             $table->date('birthdate')->nullable();
             $table->enum('sex', ['M', 'F']);
+            $table->unsignedInteger('blood_group_id')->nullable();
             $table->text('place_birthdate')->nullable();
-            $table->string('blood_group', 3)->nullable();
             $table->unsignedInteger('phone_person')->nullable();
             $table->text('location_home')->nullable();
             $table->unsignedInteger('phone_home')->nullable();
@@ -33,6 +42,8 @@ class CreateBloodDonorsTable extends Migration
             $table->text('observation')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('blood_group_id')->references('id')->on('blood_groups')->onDelete('cascade');
         });
     }
 
@@ -43,6 +54,7 @@ class CreateBloodDonorsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('blood_groups');
         Schema::dropIfExists('blood_donors');
     }
 }

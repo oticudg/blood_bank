@@ -13,6 +13,7 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
+
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->text('question');
@@ -23,15 +24,14 @@ class CreateQuestionsTable extends Migration
 
         Schema::create('blood_donors_questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('interview');
+            $table->unsignedInteger('donation_id');
             $table->unsignedInteger('question_id');
-            $table->unsignedInteger('blood_donor_id');
             $table->boolean('answer');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('donation_id')->references('id')->on('donations')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->foreign('blood_donor_id')->references('id')->on('blood_donors')->onDelete('cascade');
         });
 
     }

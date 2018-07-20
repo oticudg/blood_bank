@@ -1,9 +1,12 @@
 <template>
     <div>
-        <div class="col-md-5 text-left">
+        <div class="col-md-5 text-left" v-if="data">
             Mostrando registros {{ data.from }} al {{ data.to }} de un total de {{ data.total }} registros.
         </div>
-        <div class="col-md-7 text-right">
+        <div class="col-md-12 text-left" v-else>
+            Sin registros para mostrar.
+        </div>
+        <div class="col-md-7 text-right" v-if="data">
             <ul class="pagination">
                 <li v-if="data.current_page > 1" class="page-item">
                     <a href="#" class="page-link" @click.prevent="updateValue(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>

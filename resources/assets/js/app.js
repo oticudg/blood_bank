@@ -39,9 +39,7 @@ Vue.mixin({
 			return this.$root.permissions.includes(accion);
 		},
 		restoreMsg: function (msg) {
-			for(let i in msg) {
-				$('.modal small#'+i+'Help').text(msg[i]);
-			}
+			for(let i in msg) $('small#' + i + 'Help').text(msg[i]);
 		},
 		deleted: function (url, updateTable, name) {
 			let msg = toastr;

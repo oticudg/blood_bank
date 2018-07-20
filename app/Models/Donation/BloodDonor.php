@@ -12,7 +12,7 @@ class BloodDonor extends Model
 
 	protected $fillable = [
 		'birthdate',
-		'blood_group',
+		'blood_group_id',
 		'current_occupation',
 		'email',
 		'last_name',
@@ -33,8 +33,13 @@ class BloodDonor extends Model
 		'created_at', 'updated_at', 'deleted_at'
 	];
 
-	public function questions()
+	public function donations()
 	{
-		return $this->hasMany(BloodDonorsQuestions::class);
+		return $this->hasMany(Donation::class);
+	}
+
+	public function blood_group()
+	{
+		return $this->belongsTo(BloodGroup::class);
 	}
 }

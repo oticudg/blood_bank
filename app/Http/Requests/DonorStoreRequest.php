@@ -31,7 +31,7 @@ class DonorStoreRequest extends FormRequest
             'birthdate' => 'required|date|year_min:1900',
             'sex' => 'required',
             'place_birthdate' => 'nullable|string',
-            'blood_group' => 'nullable|max:3',
+            'blood_group_id' => 'nullable|numeric',
             'phone_person' => 'nullable|numeric',
             'location_home' => 'nullable|string',
             'phone_home' => 'nullable|numeric',

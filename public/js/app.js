@@ -5135,9 +5135,9 @@ function toComment(sourceMap) {
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(215)
+var __vue_script__ = __webpack_require__(217)
 /* template */
-var __vue_template__ = __webpack_require__(216)
+var __vue_template__ = __webpack_require__(218)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -5154,7 +5154,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\partials\\modal.vue"
+Component.options.__file = "resources\\assets\\js\\components\\partials\\input.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -5163,9 +5163,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-04e582fa", Component.options)
+    hotAPI.createRecord("data-v-2d61ecd2", Component.options)
   } else {
-    hotAPI.reload("data-v-04e582fa", Component.options)
+    hotAPI.reload("data-v-2d61ecd2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -15808,9 +15808,9 @@ function applyToTag (styleElement, obj) {
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(217)
+var __vue_script__ = __webpack_require__(215)
 /* template */
-var __vue_template__ = __webpack_require__(218)
+var __vue_template__ = __webpack_require__(216)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -15827,7 +15827,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\partials\\input.vue"
+Component.options.__file = "resources\\assets\\js\\components\\partials\\modal.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -15836,9 +15836,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2d61ecd2", Component.options)
+    hotAPI.createRecord("data-v-04e582fa", Component.options)
   } else {
-    hotAPI.reload("data-v-2d61ecd2", Component.options)
+    hotAPI.reload("data-v-04e582fa", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -48355,7 +48355,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.mixin({
 		},
 		restoreMsg: function restoreMsg(msg) {
 			for (var i in msg) {
-				$('.modal small#' + i + 'Help').text(msg[i]);
+				$('small#' + i + 'Help').text(msg[i]);
 			}
 		},
 		deleted: function deleted(url, updateTable, name) {
@@ -48474,7 +48474,7 @@ axios.interceptors.request.use(function (config) {
 		// $('input, select').parent().removeClass('has-error');
 		$('small').removeClass('text-danger').addClass('text-muted');
 	}
-	$('button').removeAttr('disabled');
+	// $('button').removeAttr('disabled')
 	// $('small').parent().find('input, select').removeClass('is-invalid');
 	// $('.modal small').removeClass('text-danger').addClass('text-muted');
 	return config;
@@ -48504,9 +48504,8 @@ axios.interceptors.response.use(function (response) {
 		$('button, input').removeAttr('disabled');
 		errors = errors.data.errors;
 		for (var e in errors) {
-			$('small#' + e + 'Help').addClass('text-danger').text(errors[e][0]);
-		}
-		toastr.warning('Error al realizar operación');
+			$('small#' + e.replace(".", "") + 'Help').addClass('text-danger').text(errors[e][0]);
+		}toastr.warning('Error al realizar operación');
 		if (errors.msg) toastr.warning(errors.msg);
 		setTimeout(function () {
 			console.clear();
@@ -63669,10 +63668,13 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_views_PermissionsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_views_PermissionsComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_views_DonorsComponent_vue__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_views_DonorsComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_views_DonorsComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_views_DonorInterviewComponent_vue__ = __webpack_require__(251);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_views_DonorInterviewComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_views_DonorInterviewComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_views_NotFoundComponent_vue__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_views_NotFoundComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_views_NotFoundComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_views_DonorComponent_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_views_DonorComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_views_DonorComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_forms_Donor_Component_vue__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_forms_Donor_Component_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_forms_Donor_Component_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_views_NotFoundComponent_vue__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_views_NotFoundComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_views_NotFoundComponent_vue__);
+
 
 
 
@@ -63712,40 +63714,28 @@ var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
 			component: __WEBPACK_IMPORTED_MODULE_6__components_views_PermissionsComponent_vue___default.a
 		}, {
 			path: '*',
-			component: __WEBPACK_IMPORTED_MODULE_9__components_views_NotFoundComponent_vue___default.a
+			component: __WEBPACK_IMPORTED_MODULE_10__components_views_NotFoundComponent_vue___default.a
 		}]
 	}, {
 		path: '/donantes',
 		name: 'donor.index',
 		component: __WEBPACK_IMPORTED_MODULE_7__components_views_DonorsComponent_vue___default.a
 	}, {
-		path: '/donantes/:id',
+		path: '/donacion/:id',
 		name: 'donor.interview',
-		component: __WEBPACK_IMPORTED_MODULE_8__components_views_DonorInterviewComponent_vue___default.a
+		component: __WEBPACK_IMPORTED_MODULE_9__components_forms_Donor_Component_vue___default.a
 	}, {
-		path: '/donantes/:id/:id2',
+		path: '/donacion/:id/:id2',
 		name: 'donor.interviewEdit',
-		component: __WEBPACK_IMPORTED_MODULE_8__components_views_DonorInterviewComponent_vue___default.a
-	},
-	// {
-	// 	path: '/donantes',
-	// 	name: 'donation.index',
-	// 	component: { template:'<b>Donantes</b>' },
-	// },
-	// {
-	// 	path: '/productos',
-	// 	name: 'products.index',
-	// 	component: { template:'<b>Productos</b>' },
-	// },
-	// {
-	// 	path: '/recepción',
-	// 	name: 'recepcion.index',
-	// 	component: { template:'<b>Recepción</b>' },
-	// },
-	{
+		component: __WEBPACK_IMPORTED_MODULE_9__components_forms_Donor_Component_vue___default.a
+	}, {
+		path: '/donante/:id',
+		name: 'donor.show',
+		component: __WEBPACK_IMPORTED_MODULE_8__components_views_DonorComponent_vue___default.a
+	}, {
 		path: '*',
 		name: 'error',
-		component: __WEBPACK_IMPORTED_MODULE_9__components_views_NotFoundComponent_vue___default.a
+		component: __WEBPACK_IMPORTED_MODULE_10__components_views_NotFoundComponent_vue___default.a
 	}]
 });
 
@@ -66133,6 +66123,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'pagination',
@@ -66193,219 +66186,225 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col-md-5 text-left" }, [
-      _vm._v(
-        "\n        Mostrando registros " +
-          _vm._s(_vm.data.from) +
-          " al " +
-          _vm._s(_vm.data.to) +
-          " de un total de " +
-          _vm._s(_vm.data.total) +
-          " registros.\n    "
-      )
-    ]),
+    _vm.data
+      ? _c("div", { staticClass: "col-md-5 text-left" }, [
+          _vm._v(
+            "\n        Mostrando registros " +
+              _vm._s(_vm.data.from) +
+              " al " +
+              _vm._s(_vm.data.to) +
+              " de un total de " +
+              _vm._s(_vm.data.total) +
+              " registros.\n    "
+          )
+        ])
+      : _c("div", { staticClass: "col-md-12 text-left" }, [
+          _vm._v("\n        Sin registros para mostrar.\n    ")
+        ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-7 text-right" }, [
-      _c(
-        "ul",
-        { staticClass: "pagination" },
-        [
-          _vm.data.current_page > 1
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(1)
-                      }
-                    }
-                  },
+    _vm.data
+      ? _c("div", { staticClass: "col-md-7 text-right" }, [
+          _c(
+            "ul",
+            { staticClass: "pagination" },
+            [
+              _vm.data.current_page > 1
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(1)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-angle-double-left",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.current_page > 1 || 1
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(_vm.data.current_page - 1)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-angle-left",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.current_page > 3
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(1)
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v("1")])]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.current_page > 4
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v("...")])]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.pagesNumber, function(page) {
+                return _c(
+                  "li",
+                  { staticClass: "page-item", class: _vm.isActive(page) },
                   [
-                    _c("i", {
-                      staticClass: "fa fa-angle-double-left",
-                      attrs: { "aria-hidden": "true" }
-                    })
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(page)
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v(_vm._s(page))])]
+                    )
                   ]
                 )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.data.current_page > 1 || 1
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(_vm.data.current_page - 1)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-angle-left",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.data.current_page > 3
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(1)
-                      }
-                    }
-                  },
-                  [_c("span", [_vm._v("1")])]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.data.current_page > 4
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                      }
-                    }
-                  },
-                  [_c("span", [_vm._v("...")])]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm._l(_vm.pagesNumber, function(page) {
-            return _c(
-              "li",
-              { staticClass: "page-item", class: _vm.isActive(page) },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(page)
-                      }
-                    }
-                  },
-                  [_c("span", [_vm._v(_vm._s(page))])]
-                )
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _vm.data.current_page < _vm.data.last_page - 3
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                      }
-                    }
-                  },
-                  [_c("span", [_vm._v("...")])]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.data.current_page < _vm.data.last_page - 2
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(_vm.data.last_page)
-                      }
-                    }
-                  },
-                  [_c("span", [_vm._v(_vm._s(_vm.data.last_page))])]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.data.current_page < _vm.data.last_page || 1
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(_vm.data.current_page + 1)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-angle-right",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.data.current_page < _vm.data.last_page
-            ? _c("li", { staticClass: "page-item" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.updateValue(_vm.data.last_page)
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-angle-double-right",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ])
-            : _vm._e()
-        ],
-        2
-      )
-    ])
+              }),
+              _vm._v(" "),
+              _vm.data.current_page < _vm.data.last_page - 3
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v("...")])]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.current_page < _vm.data.last_page - 2
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(_vm.data.last_page)
+                          }
+                        }
+                      },
+                      [_c("span", [_vm._v(_vm._s(_vm.data.last_page))])]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.current_page < _vm.data.last_page || 1
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(_vm.data.current_page + 1)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-angle-right",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.data.current_page < _vm.data.last_page
+                ? _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.updateValue(_vm.data.last_page)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-angle-double-right",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -66843,9 +66842,9 @@ exports.push([module.i, "\nselect.form-control {\r\n  width: 100% !important;\n}
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_input_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_multiselect__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_multiselect__);
@@ -67839,9 +67838,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_input_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_bootstrap_datetimepicker__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_bootstrap_datetimepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_bootstrap_datetimepicker__);
@@ -72014,9 +72013,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_input_vue__);
 //
 //
@@ -72420,7 +72419,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(243)
 /* template */
-var __vue_template__ = __webpack_require__(250)
+var __vue_template__ = __webpack_require__(247)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -72468,8 +72467,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_table_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_modal_form_donor_vue__ = __webpack_require__(244);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_modal_form_donor_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__forms_modal_form_donor_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_modal_show_donor_vue__ = __webpack_require__(247);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__show_modal_show_donor_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__show_modal_show_donor_vue__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -72512,23 +72509,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'Donaciones',
+	name: 'Donors',
 	components: {
 		'v-table': __WEBPACK_IMPORTED_MODULE_0__partials_table_vue___default.a,
-		'v-modal-form': __WEBPACK_IMPORTED_MODULE_1__forms_modal_form_donor_vue___default.a,
-		'v-modal-show': __WEBPACK_IMPORTED_MODULE_2__show_modal_show_donor_vue___default.a
+		'v-modal-form': __WEBPACK_IMPORTED_MODULE_1__forms_modal_form_donor_vue___default.a
 	},
 	data: function data() {
 		return {
-			id: null,
+			id: 0,
 			data: null,
 			formData: {
 				ready: true,
@@ -72566,7 +72559,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 					name: '',
 					age: '',
 					birthdate: '',
-					blood_group: '',
+					blood_group_id: null,
 					current_occupation: '',
 					email: '',
 					last_name: '',
@@ -72574,22 +72567,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 					location_work: ''
 				}, _defineProperty(_formData$data, 'name', ''), _defineProperty(_formData$data, 'num_id', ''), _defineProperty(_formData$data, 'observation', ''), _defineProperty(_formData$data, 'phone_home', ''), _defineProperty(_formData$data, 'phone_person', ''), _defineProperty(_formData$data, 'phone_work', ''), _defineProperty(_formData$data, 'place_birthdate', ''), _defineProperty(_formData$data, 'profession', ''), _defineProperty(_formData$data, 'sex', ''), _formData$data);
 				this.formData.ready = true;
-			} else if (cond == 'edit' || cond == 'show') {
+			} else if (cond == 'edit') {
 				this.formData.url = '/donant/' + this.id;
 				axios.get(this.formData.url).then(function (response) {
 					_this.formData.ico = 'edit';
 					_this.formData.title = 'Editar Donante: ' + response.data.fullName;
-					if (cond == 'show') {
-						_this.formData.ico = ' fa fa-eye';
-						_this.formData.title = 'Donante: ' + response.data.fullName;
-					}
 					_this.formData.data = response.data;
 					_this.formData.ready = true;
 				});
-				if (cond == 'show') {
-					$('#donor-show').modal('show');
-					return;
-				}
 			}
 			$('#donor-form').modal('show');
 			this.formData.cond = cond;
@@ -72650,19 +72635,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_input_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_input_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_bootstrap_datetimepicker__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_bootstrap_datetimepicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_bootstrap_datetimepicker__);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -72812,6 +72790,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['formData'],
   data: function data() {
     return {
+      data: [],
       option: {
         format: 'YYYY-MM-DD',
         useCurrent: false,
@@ -72842,23 +72821,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.post('get-data-donants').then(function (response) {
+      _this.data = response.data;
+    });
+  },
 
   methods: {
     registrar: function registrar(el) {
-      var _this = this;
+      var _this2 = this;
 
       this.restoreMsg(this.msg);
       if (this.formData.cond === 'create') {
         axios.post(this.formData.url, this.formData.data).then(function (response) {
           toastr.success('Donante Registrado');
-          _this.$emit('input');
-          $('#donor-form').modal('toggle');
+          _this2.$router.push({ name: 'donor.show', params: { id: response.data } });
+          $('#donor-form').modal('hide');
         });
       } else {
         axios.put(this.formData.url, this.formData.data).then(function (response) {
           toastr.success('Donante Actualizado');
-          _this.$emit('input');
-          $('#donor-form').modal('toggle');
+          _this2.$emit('input');
+          $('#donor-form').modal('hide');
         });
       }
     }
@@ -73216,7 +73202,7 @@ var render = function() {
                                       "glyphicon glyphicon-compressed"
                                   }),
                                   _vm._v(
-                                    " Grupo sanguineo:\n                    "
+                                    " Grupo sanguíneo:\n                    "
                                   )
                                 ]
                               ),
@@ -73228,8 +73214,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.formData.data.blood_group,
-                                      expression: "formData.data.blood_group"
+                                      value: _vm.formData.data.blood_group_id,
+                                      expression: "formData.data.blood_group_id"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -73249,7 +73235,7 @@ var render = function() {
                                         })
                                       _vm.$set(
                                         _vm.formData.data,
-                                        "blood_group",
+                                        "blood_group_id",
                                         $event.target.multiple
                                           ? $$selectedVal
                                           : $$selectedVal[0]
@@ -73258,42 +73244,20 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _c("option", { attrs: { value: "" } }, [
+                                  _c("option", { domProps: { value: null } }, [
                                     _vm._v("Seleccione el tipeaje")
                                   ]),
                                   _vm._v(" "),
-                                  _c("option", { attrs: { value: "A+" } }, [
-                                    _vm._v("A+")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "A-" } }, [
-                                    _vm._v("A-")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "B+" } }, [
-                                    _vm._v("B+")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "B-" } }, [
-                                    _vm._v("B-")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "AB+" } }, [
-                                    _vm._v("AB+")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "AB-" } }, [
-                                    _vm._v("AB-")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "O+" } }, [
-                                    _vm._v("O+")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "O-" } }, [
-                                    _vm._v("O-")
-                                  ])
-                                ]
+                                  _vm._l(_vm.data["bloodgroup"], function(d) {
+                                    return _c("option", {
+                                      domProps: {
+                                        value: d.id,
+                                        textContent: _vm._s(d.name)
+                                      }
+                                    })
+                                  })
+                                ],
+                                2
                               ),
                               _vm._v(" "),
                               _c(
@@ -73479,406 +73443,6 @@ if (false) {
 /* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(248)
-/* template */
-var __vue_template__ = __webpack_require__(249)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\show\\modal-show-donor.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e5cf3724", Component.options)
-  } else {
-    hotAPI.reload("data-v-e5cf3724", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 248 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_modal_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_table_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_table_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'modal-show-donor',
-  components: {
-    'modal': __WEBPACK_IMPORTED_MODULE_0__partials_modal_vue___default.a,
-    'v-table': __WEBPACK_IMPORTED_MODULE_1__partials_table_vue___default.a
-  },
-  props: ['formData'],
-  data: function data() {
-    return {
-      id: '',
-      tabla: {
-        columns: [{ title: 'Entrevista', field: 'interview', sortable: true }, { title: 'Fecha', field: 'hour', sort: 'created_at', sortable: true }, { title: 'Año', field: 'year', sort: 'created_at', sortable: true }]
-      }
-    };
-  },
-  updated: function updated() {
-    $('[data-tool="tooltip"]').tooltip();
-  },
-
-  methods: {
-    new_interview: function new_interview() {
-      this.$router.push({ name: 'donor.interview', params: { id: this.formData.data.id } });
-      $('#donor-show').modal('hide');
-    },
-    edit_interview: function edit_interview() {
-      this.$router.push({ name: 'donor.interviewEdit', params: { id: this.formData.data.id, id2: this.id } });
-      $('#donor-show').modal('hide');
-    }
-  }
-});
-
-/***/ }),
-/* 249 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "modal",
-    { attrs: { id: "donor-show", w: "lg" } },
-    [
-      _c("template", { slot: "modal-title" }, [
-        _c("span", { class: "glyphicon glyphicon-" + _vm.formData.ico }),
-        _vm._v("\n    " + _vm._s(_vm.formData.title) + "\n  ")
-      ]),
-      _vm._v(" "),
-      _c("template", { slot: "modal-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            { staticClass: "col-sm-10 col-sm-offset-1" },
-            [
-              !_vm.formData.ready
-                ? _c("spinner")
-                : _c("div", [
-                    _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("p", [
-                          _vm._v("Nombre y Apellido: "),
-                          _c("b", [_vm._v(_vm._s(_vm.formData.data.fullName))]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("Cédula: "),
-                          _c("b", [_vm._v(_vm._s(_vm.formData.data.num_id))]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("Sexo: "),
-                          _c("b", [_vm._v(_vm._s(_vm.formData.data.sex))]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("Profesion: "),
-                          _c("b", [
-                            _vm._v(_vm._s(_vm.formData.data.current_occupation))
-                          ]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("Grupo Sanguíneo: "),
-                          _c("b", [
-                            _vm._v(_vm._s(_vm.formData.data.blood_group))
-                          ]),
-                          _vm._v(".")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("p", [
-                          _vm._v("Email: "),
-                          _c("b", [_vm._v(_vm._s(_vm.formData.data.email))]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("Fecha de Nacimiento: "),
-                          _c("b", [
-                            _vm._v(_vm._s(_vm.formData.data.birthdate))
-                          ]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("telefono de casa: "),
-                          _c("b", [
-                            _vm._v(_vm._s(_vm.formData.data.phone_home))
-                          ]),
-                          _vm._v(".")
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v("telefono de trabajo: "),
-                          _c("b", [
-                            _vm._v(_vm._s(_vm.formData.data.phone_work))
-                          ]),
-                          _vm._v(".")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-12" },
-                        [
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c("h3", { staticClass: "box-title" }, [
-                            _vm._v("Tabla de entrevistas realizadas: ")
-                          ]),
-                          _vm._v(" "),
-                          _vm.can("donor.interview")
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-default btn-xs",
-                                  attrs: {
-                                    type: "button",
-                                    "data-tool": "tooltip",
-                                    title: "Nueva Entrevista"
-                                  },
-                                  on: { click: _vm.new_interview }
-                                },
-                                [
-                                  _c("span", {
-                                    staticClass: "glyphicon glyphicon-plus"
-                                  })
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.can("donor.interviewEdit")
-                            ? _c(
-                                "button",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.id,
-                                      expression: "id"
-                                    }
-                                  ],
-                                  staticClass: "btn btn-default btn-xs",
-                                  attrs: {
-                                    type: "button",
-                                    "data-tool": "tooltip",
-                                    title: "Editar Entrevista"
-                                  },
-                                  on: { click: _vm.edit_interview }
-                                },
-                                [
-                                  _c("span", {
-                                    staticClass: "glyphicon glyphicon-edit"
-                                  })
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.id,
-                                  expression: "id"
-                                }
-                              ],
-                              staticClass: "btn btn-default btn-xs",
-                              attrs: {
-                                type: "button",
-                                "data-tool": "tooltip",
-                                title: "Borrar Entrevista"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.deleted(
-                                    "/interview/" +
-                                      _vm.id +
-                                      "?donor=" +
-                                      _vm.formData.data.id,
-                                    _vm.$children[0].$children[0].get,
-                                    "name"
-                                  )
-                                }
-                              }
-                            },
-                            [
-                              _c("span", {
-                                staticClass: "glyphicon glyphicon-trash"
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("v-table", {
-                            attrs: {
-                              id: "interview",
-                              n: [5, 10, 15],
-                              nc: "5",
-                              t_head: 0,
-                              columns: _vm.tabla.columns,
-                              uri: "/interview",
-                              uridata: _vm.formData.data.id
-                            },
-                            on: {
-                              output: function($event) {
-                                _vm.id = arguments[0]
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ])
-                  ])
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("template", { slot: "modal-btn" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-default",
-            attrs: { type: "button", "data-dismiss": "modal" }
-          },
-          [_c("span", { staticClass: "fa fa-close" }), _vm._v(" Cerrar")]
-        )
-      ])
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e5cf3724", module.exports)
-  }
-}
-
-/***/ }),
-/* 250 */
-/***/ (function(module, exports, __webpack_require__) {
-
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -73911,7 +73475,7 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _c(
-          "button",
+          "router-link",
           {
             directives: [
               {
@@ -73923,14 +73487,9 @@ var render = function() {
             ],
             staticClass: "btn btn-default btn-xs",
             attrs: {
-              type: "button",
+              to: { name: "donor.show", params: { id: _vm.id } },
               "data-tool": "tooltip",
               title: "Ver Donante"
-            },
-            on: {
-              click: function($event) {
-                _vm.openform("show")
-              }
             }
           },
           [_c("span", { staticClass: "fa fa-eye" })]
@@ -74001,11 +73560,6 @@ var render = function() {
               _vm.$children[2].get()
             }
           }
-        }),
-        _vm._v(" "),
-        _c("v-modal-show", {
-          attrs: { formData: _vm.formData },
-          on: { input: function($event) {} }
         })
       ],
       1
@@ -74047,6 +73601,363 @@ if (false) {
 }
 
 /***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(249)
+/* template */
+var __vue_template__ = __webpack_require__(250)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\views\\DonorComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fed7cc48", Component.options)
+  } else {
+    hotAPI.reload("data-v-fed7cc48", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 249 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_table_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_table_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_table_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'Donor',
+	components: {
+		'v-table': __WEBPACK_IMPORTED_MODULE_0__partials_table_vue___default.a
+	},
+	data: function data() {
+		return {
+			id: '',
+			data: [],
+			tabla: {
+				columns: [{ title: 'Donacion', field: 'donation', sort: 'id', sortable: true }, { title: 'Serial', field: 'serial', sortable: true }, { title: 'Fecha', field: 'hour', sort: 'created_at', sortable: true }, { title: 'Año', field: 'year', sort: 'created_at', sortable: true }, { title: 'Observaciones', field: 'observation', sortable: true }]
+			}
+		};
+	},
+	mounted: function mounted() {
+		var _this = this;
+
+		axios.get('/donant/' + this.$route.params.id).then(function (response) {
+			if (!response.data.blood_group_id) toastr.info('Al donante no se le ha registrado su Grupo Sanguíneo');
+			_this.data = response.data;
+		}).catch(function (errors) {
+			toastr.error('Error al encontrar donante.');
+			_this.$router.go(-1);
+			setTimeout(function () {
+				console.clear();
+			}, 100);
+		});
+	},
+
+	methods: {
+		interview: function interview(val) {
+			if (val == 1) {
+				this.$router.push({ name: 'donor.interview', params: { id: this.data.id } });
+			} else {
+				this.$router.push({ name: 'donor.interviewEdit', params: { id: this.data.id, id2: this.id } });
+			}
+		}
+	}
+});
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "box" }, [
+    _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [
+        _vm._v("Donante: " + _vm._s(_vm.data.fullName) + ".")
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "box-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _vm.data
+          ? _c("div", { staticClass: "col-xs-5 col-xs-offset-1" }, [
+              _c("p", [
+                _vm._v("Nombre: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.name))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Cédula: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.num_id))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Sexo: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.sex))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Profesion: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.current_occupation))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _vm.data.blood_group
+                ? _c("p", [
+                    _vm._v("Grupo Sanguíneo: "),
+                    _c("b", [_vm._v(_vm._s(_vm.data.blood_group.name))]),
+                    _vm._v(".")
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.data
+          ? _c("div", { staticClass: "col-xs-5 col-xs-offset-1" }, [
+              _c("p", [
+                _vm._v("Apellido: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.last_name))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Email: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.email))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Fecha de Nacimiento: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.birthdate))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Telefono de casa: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.phone_home))]),
+                _vm._v(".")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("Telefono de trabajo: "),
+                _c("b", [_vm._v(_vm._s(_vm.data.phone_work))]),
+                _vm._v(".")
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-12" },
+          [
+            _c("hr"),
+            _vm._v(" "),
+            _c("h4", { staticClass: "box-title" }, [
+              _vm._v("\n\t\t\t\t\tDonaciones Realizadas: \n\t\t\t\t\t"),
+              _vm.can("donor.interview")
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default btn-xs",
+                      attrs: {
+                        type: "button",
+                        "data-tool": "tooltip",
+                        title: "Nueva Donación"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.interview(1)
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "glyphicon glyphicon-plus" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.can("donor.interviewEdit")
+                ? _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.id,
+                          expression: "id"
+                        }
+                      ],
+                      staticClass: "btn btn-default btn-xs",
+                      attrs: {
+                        type: "button",
+                        "data-tool": "tooltip",
+                        title: "Editar Donación"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.interview(2)
+                        }
+                      }
+                    },
+                    [_c("span", { staticClass: "glyphicon glyphicon-edit" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.id,
+                      expression: "id"
+                    }
+                  ],
+                  staticClass: "btn btn-default btn-xs",
+                  attrs: {
+                    type: "button",
+                    "data-tool": "tooltip",
+                    title: "Borrar Donación"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.deleted(
+                        "/donations/" + _vm.id + "?donor=" + _vm.data.id,
+                        _vm.$children[0].get,
+                        "name"
+                      )
+                    }
+                  }
+                },
+                [_c("span", { staticClass: "glyphicon glyphicon-trash" })]
+              )
+            ]),
+            _vm._v(" "),
+            _c("v-table", {
+              attrs: {
+                id: "donation",
+                n: [5, 10, 15],
+                nc: "5",
+                t_head: 0,
+                columns: _vm.tabla.columns,
+                uri: "/donations",
+                uridata: this.$route.params.id
+              },
+              on: {
+                output: function($event) {
+                  _vm.id = arguments[0]
+                }
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-fed7cc48", module.exports)
+  }
+}
+
+/***/ }),
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -74072,7 +73983,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\views\\DonorInterviewComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\forms\\Donor-Component.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -74081,9 +73992,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-313f802d", Component.options)
+    hotAPI.createRecord("data-v-1f8625bc", Component.options)
   } else {
-    hotAPI.reload("data-v-313f802d", Component.options)
+    hotAPI.reload("data-v-1f8625bc", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -74099,6 +74010,56 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_input_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_input_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_input_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -74172,11 +74133,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Interview',
+	components: {
+		'v-input': __WEBPACK_IMPORTED_MODULE_0__partials_input_vue___default.a
+	},
 	data: function data() {
 		return {
+			page: 1,
 			questions: [],
+			bloodgroup: [],
+			typedonation: [],
+			donation: {
+				blood_donor_id: this.$route.params.id,
+				blood_group_id: null,
+				serial: 'A-',
+				weight: '',
+				pulse: '',
+				blood_pressure: '',
+				temperature: '',
+				height: '',
+				type_donation_id: null
+				// interview: '',
+				// location: '',
+				// name_patient: '',
+				// observation: '',
+			},
+			entries: {
+				a: [{ label: 'Serial Nº: H.C', id: 'donationserial', id2: 'serial', icon: 'glyphicon glyphicon-compressed', required: true, placeholder: 'A-' }, { label: 'Peso (Kg)', id: 'donationweight', id2: 'weight', icon: 'glyphicon glyphicon-compressed', type: 'number' }, { label: 'Pulso', id: 'donationpulse', id2: 'pulse', icon: 'glyphicon glyphicon-compressed', type: 'number' }, { label: 'Tención Arterial', id: 'donationblood_pressure', id2: 'blood_pressure', icon: 'glyphicon glyphicon-compressed', placeholder: 'ejem: 105 - 135' }, { label: 'Temperatura (C°)', id: 'donationtemperature', id2: 'temperature', icon: 'glyphicon glyphicon-compressed', type: 'number' }, { label: 'Estatura (cm)', id: 'donationheight', id2: 'height', icon: 'glyphicon glyphicon-compressed', type: 'number' }]
+			},
+			msg: {
+				donationserial: '.',
+				donationweight: '.',
+				donationpulse: '.',
+				donationblood_pressure: '.',
+				donationtemperature: '.',
+				donationheight: '.',
+				donationblood_group_id: '.',
+				donationtype_donation_idHelp: '.'
+			},
 			data: {
 				fullName: ''
 			}
@@ -74186,17 +74183,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		var _this = this;
 
 		$('body').addClass('sidebar-collapse');
-		var data = '?interview=1';
-		if (this.$route.params.id2) data += '&id=' + this.$route.params.id2;
-		axios.get('/donant/' + this.$route.params.id + data).then(function (response) {
+		var data = '';
+		if (this.$route.params.id2) {
+			data += '/' + this.$route.params.id2;
+		}
+		axios.post('/get-data-donation/' + this.$route.params.id + data).then(function (response) {
 			_this.data = response.data.blooddonor;
 			_this.questions = response.data.questions;
-			if (!_this.$route.params.id2) for (var i in _this.questions) {
-				_this.questions[i].answer = true;
+			if (!_this.$route.params.id2) {
+				for (var i in _this.questions) {
+					_this.questions[i].answer = true;
+				}
+			} else {
+				_this.donation = response.data.donation;
+				_this.donation.blood_group_id = response.data.blooddonor.blood_group_id;
 			}
-		}).catch(function (error) {
-			toastr.error('Error al encontrar donante.');
-			_this.$router.push({ path: '/donantes' });
+			_this.bloodgroup = response.data.bloodgroup;
+			_this.typedonation = response.data.typedonation;
+		}).catch(function (errors) {
+			toastr.error('Error al encontrar donación.');
+			_this.$router.go(-1);
 			setTimeout(function () {
 				console.clear();
 			}, 100);
@@ -74204,21 +74210,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	methods: {
-		register: function register() {
+		register: function register(el) {
 			var _this2 = this;
 
+			$(el.target).attr('disabled', 'disabled');
+			this.restoreMsg(this.msg);
 			if (!this.$route.params.id2) {
-				axios.post('/interview', { id: this.data.id, questions: this.questions }).then(function (response) {
-					toastr.success('Entrevista Guardada');
+				axios.post('/donations', { id: this.data.id, donation: this.donation, questions: this.questions }).then(function (response) {
+					$(el.target).removeAttr('disabled');
+					toastr.success('Donación Registrada');
 					setTimeout(function () {
-						_this2.$router.push({ path: '/donantes' });
+						_this2.$router.push('/donante/' + _this2.data.id);
 					}, 500);
 				});
 			} else {
-				axios.put('/interview/' + this.data.id, { questions: this.questions }).then(function (response) {
-					toastr.success('Entrevista Actualizada');
+				axios.put('/donations/' + this.$route.params.id2, { donation: this.donation, questions: this.questions }).then(function (response) {
+					$(el.target).removeAttr('disabled');
+					toastr.success('Donación Actualizada');
 					setTimeout(function () {
-						_this2.$router.push({ path: '/donantes' });
+						_this2.$router.push('/donante/' + _this2.data.id);
 					}, 500);
 				});
 			}
@@ -74236,217 +74246,481 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "box" }, [
     _c("div", { staticClass: "box-header" }, [
-      _c("h3", { staticClass: "box-title" }, [
-        _vm._v("Entrevista al donante: "),
-        _c("b", [_vm._v(_vm._s(_vm.data.fullName))]),
-        _vm._v(".")
-      ])
+      !this.$route.params.id2
+        ? _c("h3", { staticClass: "box-title" }, [
+            _vm._v("Nueva Entrevista al donante: "),
+            _c("b", [_vm._v(_vm._s(_vm.data.fullName))]),
+            _vm._v(".")
+          ])
+        : _c("h3", { staticClass: "box-title" }, [
+            _vm._v("Actualizar Entrevista al donante: "),
+            _c("b", [_vm._v(_vm._s(_vm.data.fullName))]),
+            _vm._v(".")
+          ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "box-body" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c(
-            "table",
-            {
-              staticClass:
-                "table table-condensed table-hover table-striped table-bordered"
-            },
-            [
-              _vm._m(0),
-              _vm._v(" "),
+        _vm.page == 1
+          ? _c("div", { staticClass: "col-md-6" }, [
               _c(
-                "tbody",
-                _vm._l(_vm.questions, function(q, index) {
-                  return index < 18
-                    ? _c("tr", [
-                        _c("td", [_vm._v(_vm._s(index + 1))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("¿" + _vm._s(q.question) + "?")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "onoffswitch" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: q.answer,
-                                  expression: "q.answer"
-                                }
-                              ],
-                              staticClass: "onoffswitch-checkbox",
-                              attrs: {
-                                type: "checkbox",
-                                id: "myonoffswitch-" + q.id
-                              },
-                              domProps: {
-                                checked: q.answer,
-                                checked: Array.isArray(q.answer)
-                                  ? _vm._i(q.answer, null) > -1
-                                  : q.answer
-                              },
-                              on: {
-                                click: function($event) {
-                                  q.answer = !q.answer
-                                },
-                                change: function($event) {
-                                  var $$a = q.answer,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 && (q.answer = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (q.answer = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.$set(q, "answer", $$c)
-                                  }
-                                }
-                              }
-                            }),
+                "table",
+                {
+                  staticClass:
+                    "table table-condensed table-hover table-striped table-bordered"
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.questions, function(q, index) {
+                      return index < 18
+                        ? _c("tr", [
+                            _c("td", [_vm._v(_vm._s(index + 1))]),
                             _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "onoffswitch-label",
-                                attrs: { for: "myonoffswitch-" + q.id }
-                              },
-                              [
-                                _c("span", {
-                                  staticClass: "onoffswitch-inner"
+                            _c("td", [_vm._v("¿" + _vm._s(q.question) + "?")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("div", { staticClass: "onoffswitch" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: q.answer,
+                                      expression: "q.answer"
+                                    }
+                                  ],
+                                  staticClass: "onoffswitch-checkbox",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "myonoffswitch-" + q.id
+                                  },
+                                  domProps: {
+                                    checked: q.answer,
+                                    checked: Array.isArray(q.answer)
+                                      ? _vm._i(q.answer, null) > -1
+                                      : q.answer
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      q.answer = !q.answer
+                                    },
+                                    change: function($event) {
+                                      var $$a = q.answer,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (q.answer = $$a.concat([$$v]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (q.answer = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.$set(q, "answer", $$c)
+                                      }
+                                    }
+                                  }
                                 }),
                                 _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "onoffswitch-switch"
-                                })
-                              ]
-                            )
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "onoffswitch-label",
+                                    attrs: { for: "myonoffswitch-" + q.id }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass: "onoffswitch-inner"
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", {
+                                      staticClass: "onoffswitch-switch"
+                                    })
+                                  ]
+                                )
+                              ])
+                            ])
                           ])
-                        ])
-                      ])
-                    : _vm._e()
-                })
+                        : _vm._e()
+                    })
+                  )
+                ]
               )
-            ]
-          )
-        ]),
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c(
-            "table",
-            {
-              staticClass:
-                "table table-condensed table-hover table-striped table-bordered"
-            },
-            [
-              _vm._m(1),
-              _vm._v(" "),
+        _vm.page == 1
+          ? _c("div", { staticClass: "col-md-6" }, [
               _c(
-                "tbody",
-                _vm._l(_vm.questions, function(q, index) {
-                  return index >= 18
-                    ? _c("tr", [
-                        _c("td", [_vm._v(_vm._s(index + 1))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("¿" + _vm._s(q.question) + "?")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "onoffswitch" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: q.answer,
-                                  expression: "q.answer"
-                                }
-                              ],
-                              staticClass: "onoffswitch-checkbox",
-                              attrs: {
-                                type: "checkbox",
-                                id: "myonoffswitch-" + q.id
-                              },
-                              domProps: {
-                                checked: Array.isArray(q.answer)
-                                  ? _vm._i(q.answer, null) > -1
-                                  : q.answer
-                              },
-                              on: {
-                                click: function($event) {
-                                  q.answer = !q.answer
-                                },
-                                change: function($event) {
-                                  var $$a = q.answer,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 && (q.answer = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (q.answer = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
-                                    }
-                                  } else {
-                                    _vm.$set(q, "answer", $$c)
-                                  }
-                                }
-                              }
-                            }),
+                "table",
+                {
+                  staticClass:
+                    "table table-condensed table-hover table-striped table-bordered"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.questions, function(q, index) {
+                      return index >= 18
+                        ? _c("tr", [
+                            _c("td", [_vm._v(_vm._s(index + 1))]),
                             _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "onoffswitch-label",
-                                attrs: { for: "myonoffswitch-" + q.id }
-                              },
-                              [
-                                _c("span", {
-                                  staticClass: "onoffswitch-inner"
+                            _c("td", [_vm._v("¿" + _vm._s(q.question) + "?")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("div", { staticClass: "onoffswitch" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: q.answer,
+                                      expression: "q.answer"
+                                    }
+                                  ],
+                                  staticClass: "onoffswitch-checkbox",
+                                  attrs: {
+                                    type: "checkbox",
+                                    id: "myonoffswitch-" + q.id
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(q.answer)
+                                      ? _vm._i(q.answer, null) > -1
+                                      : q.answer
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      q.answer = !q.answer
+                                    },
+                                    change: function($event) {
+                                      var $$a = q.answer,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (q.answer = $$a.concat([$$v]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (q.answer = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.$set(q, "answer", $$c)
+                                      }
+                                    }
+                                  }
                                 }),
                                 _vm._v(" "),
-                                _c("span", {
-                                  staticClass: "onoffswitch-switch"
-                                })
-                              ]
-                            )
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass: "onoffswitch-label",
+                                    attrs: { for: "myonoffswitch-" + q.id }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass: "onoffswitch-inner"
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", {
+                                      staticClass: "onoffswitch-switch"
+                                    })
+                                  ]
+                                )
+                              ])
+                            ])
                           ])
-                        ])
-                      ])
-                    : _vm._e()
-                })
+                        : _vm._e()
+                    })
+                  )
+                ]
               )
-            ]
-          )
-        ]),
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        !this.$route.params.id2
-          ? _c("div", { staticClass: "col-md-12 text-center" }, [
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
+        _vm.page == 2
+          ? _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-10 col-md-offset-1" },
+                  [
+                    _vm._l(_vm.entries.a, function(input) {
+                      return _c(
+                        "div",
+                        { staticClass: "col-md-3" },
+                        [
+                          _c("v-input", {
+                            attrs: {
+                              name: input,
+                              required: input.required,
+                              readonly: input.readonly,
+                              placeholder: input.placeholder,
+                              type: input.type,
+                              msg: _vm.msg[input.id]
+                            },
+                            on: {
+                              input: function($event) {
+                                _vm.donation[input.id2] = arguments[0]
+                              }
+                            },
+                            model: {
+                              value: _vm.donation[input.id2],
+                              callback: function($$v) {
+                                _vm.$set(_vm.donation, input.id2, $$v)
+                              },
+                              expression: "donation[input.id2]"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.donation.blood_group_id,
+                                expression: "donation.blood_group_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "blood_group_id",
+                              required: "true",
+                              disabled: ""
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.donation,
+                                  "blood_group_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { domProps: { value: null } }, [
+                              _vm._v("No ha sido asigando")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.bloodgroup, function(b) {
+                              return _c("option", {
+                                domProps: {
+                                  value: b.id,
+                                  textContent: _vm._s(b.name)
+                                }
+                              })
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "small",
+                          {
+                            staticClass: "form-text text-muted",
+                            attrs: { id: "donationblood_group_idHelp" }
+                          },
+                          [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.msg.blood_group_id)
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-3" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.donation.type_donation_id,
+                                expression: "donation.type_donation_id"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { id: "type_donation_id", required: "true" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.donation,
+                                  "type_donation_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("option", { domProps: { value: null } }, [
+                              _vm._v("Seleccione el tipo")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.typedonation, function(t) {
+                              return _c("option", {
+                                domProps: {
+                                  value: t.id,
+                                  textContent: _vm._s(t.name)
+                                }
+                              })
+                            })
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "small",
+                          {
+                            staticClass: "form-text text-muted",
+                            attrs: { id: "donationtype_donation_idHelp" }
+                          },
+                          [
+                            _c("span", {
+                              domProps: {
+                                textContent: _vm._s(_vm.msg.type_donation_id)
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  ],
+                  2
+                )
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12 text-center" }, [
+          _vm.page == 1 && this.$route.params.id
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { onclick: "javascript:history.back()" }
+                },
+                [
+                  _c("i", { staticClass: "glyphicon glyphicon-remove" }),
+                  _vm._v(" Atras")
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.page == 1 && !this.$route.params.id
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { onclick: "javascript:history.back()" }
+                },
+                [
+                  _c("i", { staticClass: "glyphicon glyphicon-remove" }),
+                  _vm._v(" Cancelar")
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.page == 2
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: {
+                    click: function($event) {
+                      _vm.page = 1
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "glyphicon glyphicon-arrow-left" }),
+                  _vm._v(" Atras")
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.page == 1
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  on: {
+                    click: function($event) {
+                      _vm.page = 2
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "glyphicon glyphicon-ok" }),
+                  _vm._v(" Siguiente")
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.page == 2 && !this.$route.params.id
+            ? _c(
                 "button",
                 { staticClass: "btn btn-success", on: { click: _vm.register } },
                 [
                   _c("i", { staticClass: "glyphicon glyphicon-ok" }),
-                  _vm._v(" Registrar")
+                  _vm._v(" Guardar")
                 ]
               )
-            ])
-          : _c("div", { staticClass: "col-md-12 text-center" }, [
-              _vm._m(3),
-              _vm._v(" "),
-              _c(
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.page == 2 && this.$route.params.id
+            ? _c(
                 "button",
                 { staticClass: "btn btn-success", on: { click: _vm.register } },
                 [
@@ -74454,7 +74728,8 @@ var render = function() {
                   _vm._v(" Actualizar")
                 ]
               )
-            ])
+            : _vm._e()
+        ])
       ])
     ])
   ])
@@ -74493,14 +74768,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
-      {
-        staticClass: "btn btn-danger",
-        attrs: { onclick: "javascript:history.back()" }
-      },
+      "label",
+      { staticClass: "control-label", attrs: { for: "blood_group_id" } },
       [
-        _c("i", { staticClass: "glyphicon glyphicon-remove" }),
-        _vm._v(" Cancelar")
+        _c("span", { staticClass: "glyphicon glyphicon-inbox" }),
+        _vm._v(" Tipeaje:\n\t\t\t\t\t\t\t\t")
       ]
     )
   },
@@ -74509,14 +74781,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
-      {
-        staticClass: "btn btn-danger",
-        attrs: { onclick: "javascript:history.back()" }
-      },
+      "label",
+      { staticClass: "control-label", attrs: { for: "type_donation_id" } },
       [
-        _c("i", { staticClass: "glyphicon glyphicon-arrow-left" }),
-        _vm._v(" Atras")
+        _c("span", { staticClass: "glyphicon glyphicon-inbox" }),
+        _vm._v(" Tipo de donación:\n\t\t\t\t\t\t\t\t")
       ]
     )
   }
@@ -74526,7 +74795,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-313f802d", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1f8625bc", module.exports)
   }
 }
 

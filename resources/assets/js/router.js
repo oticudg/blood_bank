@@ -5,8 +5,9 @@ import Profile from './components/views/profileComponent.vue';
 import Users from './components/views/UsersComponent.vue';
 import Roles from './components/views/RolesComponent.vue';
 import Permissions from './components/views/PermissionsComponent.vue';
-import Donor from './components/views/DonorsComponent.vue';
-import Interview from './components/views/DonorInterviewComponent.vue';
+import Donors from './components/views/DonorsComponent.vue';
+import Donor from './components/views/DonorComponent.vue';
+import Donation from './components/forms/Donor-Component.vue';
 import NotFound from './components/views/NotFoundComponent.vue';
 
 const router = new VueRouter({
@@ -51,33 +52,23 @@ const router = new VueRouter({
 	{
 		path: '/donantes',
 		name: 'donor.index',
+		component: Donors,
+	},
+	{
+		path: '/donacion/:id',
+		name: 'donor.interview',
+		component: Donation,
+	},
+	{
+		path: '/donacion/:id/:id2',
+		name: 'donor.interviewEdit',
+		component: Donation,
+	},
+	{
+		path: '/donante/:id',
+		name: 'donor.show',
 		component: Donor,
 	},
-	{
-		path: '/donantes/:id',
-		name: 'donor.interview',
-		component: Interview,
-	},
-	{
-		path: '/donantes/:id/:id2',
-		name: 'donor.interviewEdit',
-		component: Interview,
-	},
-	// {
-	// 	path: '/donantes',
-	// 	name: 'donation.index',
-	// 	component: { template:'<b>Donantes</b>' },
-	// },
-	// {
-	// 	path: '/productos',
-	// 	name: 'products.index',
-	// 	component: { template:'<b>Productos</b>' },
-	// },
-	// {
-	// 	path: '/recepción',
-	// 	name: 'recepcion.index',
-	// 	component: { template:'<b>Recepción</b>' },
-	// },
 	{ 
 		path: '*', 
 		name: 'error',

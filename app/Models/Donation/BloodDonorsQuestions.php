@@ -12,19 +12,17 @@ class BloodDonorsQuestions extends Model
 
 	protected $fillable = [
 		'answer',
-		'blood_donor_id',
-		'interview',
+		'donation_id',
 		'question_id',
-		'created_at'
 	];
 
 	protected $hidden = [
-		'updated_at', 'deleted_at'
+		'created_at', 'updated_at', 'deleted_at'
 	];
 
-	public function blood_donor()
+	public function donation()
 	{
-		return $this->belongsTo(BloodDonor::class);
+		return $this->belongsTo(Donation::class);
 	}
 
 	public function question()
